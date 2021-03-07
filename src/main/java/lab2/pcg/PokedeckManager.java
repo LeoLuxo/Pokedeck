@@ -9,7 +9,7 @@ import java.io.*;
 public class PokedeckManager {
 	
 	private static final String savePath = "pokedecks/";
-	private static final String extention = ".json";
+	private static final String extension = ".json";
 	
 	public static boolean deckExists(String name) {
 		return getJsonFile(name).canRead();
@@ -22,7 +22,7 @@ public class PokedeckManager {
 			return gson.fromJson(reader, CardDeck.class);
 			
 		} catch (FileNotFoundException ex) {
-			// If the file can't be found it means that the interface failed horribly
+			// If the file can't be found it means that something went horribly wrong (possibly didn't check deckExists beforehand)
 			ex.printStackTrace();
 		}
 		
@@ -55,7 +55,7 @@ public class PokedeckManager {
 	}
 	
 	private static File getJsonFile(String name) {
-		return new File(savePath + name + extention);
+		return new File(savePath + name + extension);
 	}
 	
 }
