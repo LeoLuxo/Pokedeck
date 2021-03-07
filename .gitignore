@@ -2,6 +2,7 @@
 .settings/
 bin/
 out/
+target/
 
 .classpath
 .project
