@@ -51,7 +51,7 @@ public class PokedeckManager {
 	
 	
 	private static String sanitizeInput(String input) {
-		return input.toLowerCase().strip();
+		return input.toUpperCase().strip();
 	}
 	
 	private static File getJsonFile(String name) {
