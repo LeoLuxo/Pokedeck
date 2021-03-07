@@ -30,14 +30,22 @@ public class PokedeckManager {
 	}
 	
 	public static void saveDeck(CardDeck deck) {
+		File outputFile = getJsonFile(deck.name);
+		outputFile.getParentFile().mkdirs();
+		
 		try {
-			FileWriter fw = new FileWriter(getJsonFile(deck.name));
+			FileWriter fw = new FileWriter(outputFile);
 			Gson gson = new Gson();
 			fw.write(gson.toJson(deck));
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void createDeck(String name) {
+		CardDeck deck = new CardDeck(name);
+		saveDeck(deck);
 	}
 	
 	
