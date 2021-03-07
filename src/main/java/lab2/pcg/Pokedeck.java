@@ -1,7 +1,16 @@
 package lab2.pcg;
 
+import java.util.Scanner;
+
+
 public class Pokedeck {
+  
+  public static Scanner scanner;
+  
   public static void main(String[] args) {
-    System.out.println("Welcome to my Pokedeck app!");
+    
+    scanner = new Scanner(System.in);
+    Authentication.askName();
+    
   }
 }
