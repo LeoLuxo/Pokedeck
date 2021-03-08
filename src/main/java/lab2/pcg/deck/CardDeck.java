@@ -1,5 +1,6 @@
 package lab2.pcg.deck;
 
+import lab2.pcg.deck.card.Card;
 import java.util.ArrayList;
 import java.util.List;
 
