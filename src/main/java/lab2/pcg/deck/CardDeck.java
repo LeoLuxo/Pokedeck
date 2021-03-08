@@ -38,6 +38,8 @@ public class CardDeck {
 				.collect(Collectors.toList());
 	}
 	
+	// Trying to merge the methods for the three card types using reflection and Class<? extends Card> just for the sake
+	// of avoiding code repetition would have been horribly redudant and made these methods wayyy more complicated.
 	public List<Card> filterPokemonCards(Predicate<PokemonCard> filter, Comparator<PokemonCard> sorter) {
 		return cards.stream()
 				.filter(card -> card instanceof PokemonCard)
