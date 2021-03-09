@@ -6,11 +6,11 @@ import lab2.pcg.deck.enums.TrainerType;
 
 public class TrainerCard extends Card {
 	
-	public TrainerType type;
+	public TrainerType type = TrainerType.NONE;
 	
-	public TrainerCard(String name, String description, int cardNumber, Expansion expansionSymbol, TrainerType type) {
-		super(name, description, cardNumber, expansionSymbol);
-		this.type = type;
-	}
-	
+//	public TrainerCard(String name, String description, int cardNumber, Expansion expansionSymbol, TrainerType type) {
+//		super(name, description, cardNumber, expansionSymbol);
+//		this.type = type;
+//	}
+
 }

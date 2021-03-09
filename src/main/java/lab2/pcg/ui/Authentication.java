@@ -12,7 +12,7 @@ public class Authentication  {
 		while (true) {
 			// Ask user for name
 			System.out.println("Welcome trainer! What deck do you wish to load?");
-			String name = Util.requestNonEmptyInput();
+			String name = Util.requestNonEmptyString();
 			name = Util.sanitizeDeckNameInput(name);
 			
 			// Call deckExists method from PokedeckManager class to see if it exists.
@@ -30,7 +30,7 @@ public class Authentication  {
 	
 	public static boolean askNewDeck(String name) {
 		System.out.println("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"? (y/n)");
-		boolean answer = Util.requestYesNoInput();
+		boolean answer = Util.requestYesNoBoolean();
 		
 		if (answer) {
 			PokedeckManager.createDeck(name);

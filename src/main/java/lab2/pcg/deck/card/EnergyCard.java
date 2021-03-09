@@ -6,11 +6,11 @@ import lab2.pcg.deck.enums.Expansion;
 
 public class EnergyCard extends Card {
 	
-	public EnergyType type;
+	public EnergyType type = EnergyType.NONE;
 	
-	public EnergyCard(String name, String description, int cardNumber, Expansion expansionSymbol, EnergyType type) {
-		super(name, description, cardNumber, expansionSymbol);
-		this.type = type;
-	}
-	
+//	public EnergyCard(String name, String description, int cardNumber, Expansion expansionSymbol, EnergyType type) {
+//		super(name, description, cardNumber, expansionSymbol);
+//		this.type = type;
+//	}
+
 }

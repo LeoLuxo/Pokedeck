@@ -9,7 +9,7 @@ public enum Expansion {
 	//.*\.png \t(?:— \t)?(.*?) \t.* \t(.*)
 	//\t\2\(\"\1\"\),
 	
-	UNDEFINED(""),
+	NONE(""),
 	BS("Base Set"),
 	JU("Jungle"),
 	FO("Fossil"),

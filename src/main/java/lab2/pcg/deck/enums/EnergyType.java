@@ -2,6 +2,7 @@ package lab2.pcg.deck.enums;
 
 public enum EnergyType {
 	
+	NONE(""),
 	COLORLESS("Colorless"),
 	GRASS("Grass"),
 	FIRE("Fire"),
