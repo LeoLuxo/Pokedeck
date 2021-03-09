@@ -5,7 +5,7 @@ public enum Expansion {
 	// This list of expansions was created by copying the entire table from
 	// https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_Trading_Card_Game_expansions
 	// as text and regex-ing it to the correct java syntax.
-	// For the sake of archiving, here are the expressions:
+	// For the sake of archiving, here are the find-replace expressions:
 	//.*\.png \t(?:— \t)?(.*?) \t.* \t(.*)
 	//\t\2\(\"\1\"\),
 	
