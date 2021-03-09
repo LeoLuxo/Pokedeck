@@ -19,7 +19,10 @@ public class PokedeckManager {
 		try {
 			Gson gson = new Gson();
 			FileReader reader = new FileReader(getJsonFile(name));
-			return gson.fromJson(reader, CardDeck.class);
+			
+			CardDeck deck = gson.fromJson(reader, CardDeck.class);
+			deck.name = name;
+			return deck;
 			
 		} catch (FileNotFoundException ex) {
 			// If the file can't be found it means that something went horribly wrong (possibly didn't check deckExists beforehand)

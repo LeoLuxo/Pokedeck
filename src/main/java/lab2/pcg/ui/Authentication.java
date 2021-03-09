@@ -1,6 +1,8 @@
-package lab2.pcg;
+package lab2.pcg.ui;
 
 
+import lab2.pcg.PokedeckManager;
+import lab2.pcg.Util;
 import lab2.pcg.deck.CardDeck;
 
 

@@ -13,6 +13,15 @@ public class Util {
 		return requestInput(s -> s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n")).equalsIgnoreCase("y");
 	}
 	
+	// Ugly input code only temporary
+	public static int requestOneTwoInput() {
+		return Integer.parseInt(requestInput(s -> s.equalsIgnoreCase("1") || s.equalsIgnoreCase("2")));
+	}
+	
+	public static int requestOneTwoThreeInput() {
+		return Integer.parseInt(requestInput(s -> s.equalsIgnoreCase("1") || s.equalsIgnoreCase("2") || s.equalsIgnoreCase("3")));
+	}
+	
 	
 	
 	public static String sanitizeDeckNameInput(String input) {
