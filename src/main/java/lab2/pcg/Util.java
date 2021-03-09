@@ -9,8 +9,8 @@ public class Util {
 		return requestInput(s -> !s.equals(""));
 	}
 	
-	public static String requestYesNoInput() {
-		return requestInput(s -> s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n"));
+	public static boolean requestYesNoInput() {
+		return requestInput(s -> s.equalsIgnoreCase("y") || s.equalsIgnoreCase("n")).equalsIgnoreCase("y");
 	}
 	
 	
