@@ -81,14 +81,14 @@ public class CardCreator {
 		card.type = Util.requestTrainerType();
 	}
 	
-	public static void designEnergyCard(Card baseCard) {
+	private static void designEnergyCard(Card baseCard) {
 		EnergyCard card = (EnergyCard) baseCard;
 		
 		System.out.print("ENERGY TYPE: ");
 		card.type = Util.requestEnergyType();
 	}
 	
-	public static void displayCard(Card card, int row, int col) {
+	private static void displayCard(Card card, int row, int col) {
 		Display.eraseInDisplayFull();
 		Display.cursorPosition(row, 1);
 		
