@@ -41,8 +41,17 @@ public class Display {
 	
 	
 	
+	public static void eraseInDisplayFromCursor() {printCSICode("0J");}
+	public static void eraseInDisplayToCursor() {printCSICode("1J");}
+	public static void eraseInDisplayFull() {printCSICode("2J");}
+	
+	public static void eraseInLineFromCursor() {printCSICode("0K");}
+	public static void eraseInLineToCursor() {printCSICode("1K");}
+	public static void eraseInLineFull() {printCSICode("2K");}
+	
+	
+	
 	public static void cursorPosition(int n, int m) {printCSICode(n + ";" + m + "H");}
-	public static void horizontalVerticalPosition(int n, int m) {printCSICode(n + ";" + m + "f");}
 	
 	public static void cursorNextLine(int n) {printCSICode(n + "E");}
 	public static void cursorPreviousLine(int n) {printCSICode(n + "F");}
@@ -62,10 +71,9 @@ public class Display {
 	
 	
 	public static void printColorDesign(String design, Color mainColor, Color highlightColor, int offset) {
-		String offsetString = "@" + " ".repeat(offset);
-		
+		String offsetString = CSI+(offset-1)+"G";
 		design = offsetString + design
-				.replaceAll("\n", "\n" + offsetString);
+				.replaceAll("\n", CSI+"1E" + offsetString);
 		
 		design = design
 				.replaceAll("°M", CSI + buildColorCode(mainColor, true))

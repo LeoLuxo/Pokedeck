@@ -79,6 +79,8 @@ public class CardCreator {
 		System.out.print("ENERGY TYPE: ");
 		card.type = Util.requestEnergyType();
 		
+		Display.eraseInDisplayFull();
+		Display.cursorPosition(1, 1);
 		Display.printColorDesign(Util.readDesignString("energy_card"), new Color(198, 195, 193), card.type.color, 4);
 		Pokedeck.scanner.nextLine();
 	}
