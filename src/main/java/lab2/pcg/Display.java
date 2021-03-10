@@ -70,7 +70,7 @@ public class Display {
 	
 	
 	
-	public static void printColorDesign(String design, Color mainColor, Color highlightColor, int offset) {
+	public static void printColorDesign(String design, Color mainColor, Color secondaryColor, Color highlightColor, int offset) {
 		String offsetString = CSI+(offset-1)+"G";
 		design = offsetString + design
 				.replaceAll("\n", CSI+"1E" + offsetString);
@@ -78,6 +78,8 @@ public class Display {
 		design = design
 				.replaceAll("°M", CSI + buildColorCode(mainColor, true))
 				.replaceAll("°m", CSI + buildColorCode(mainColor, false))
+				.replaceAll("°S", CSI + buildColorCode(secondaryColor, true))
+				.replaceAll("°s", CSI + buildColorCode(secondaryColor, false))
 				.replaceAll("°H", CSI + buildColorCode(highlightColor, true))
 				.replaceAll("°h", CSI + buildColorCode(highlightColor, false))
 				.replaceAll("°W", CSI + buildColorCode(Color.WHITE, true))

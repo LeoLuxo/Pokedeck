@@ -14,6 +14,12 @@ import java.awt.*;
 
 public class CardCreator {
 	
+	
+	private static final Color MAIN_COLOR = new Color(198, 195, 193);
+	private static final Color SECONDARY_COLOR = new Color(135, 135, 135);
+	
+	
+	
 	public static void designCard() {
 		System.out.println("What card do you want to create?");
 		System.out.println("1) Pokémon Card\n2) Trainer Card\n3) Energy Card");
@@ -64,6 +70,8 @@ public class CardCreator {
 		}
 		System.out.print("TYPE: ");
 		card.type = Util.requestEnergyType();
+		
+		displayCard(card);
 	}
 	
 	private static void designTrainerCard(Card baseCard) {
@@ -71,6 +79,8 @@ public class CardCreator {
 		
 		System.out.print("TRAINER CARD TYPE: ");
 		card.type = Util.requestTrainerType();
+		
+		displayCard(card);
 	}
 	
 	public static void designEnergyCard(Card baseCard) {
@@ -79,10 +89,23 @@ public class CardCreator {
 		System.out.print("ENERGY TYPE: ");
 		card.type = Util.requestEnergyType();
 		
+		displayCard(card);
+	}
+	
+	public static void displayCard(Card card) {
 		Display.eraseInDisplayFull();
 		Display.cursorPosition(1, 1);
-		Display.printColorDesign(Util.readDesignString("energy_card"), new Color(198, 195, 193), card.type.color, 4);
-		Pokedeck.scanner.nextLine();
+		
+		if (card instanceof PokemonCard) {
+			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, ((PokemonCard) card).type.color, 4);
+		} else if (card instanceof TrainerCard) {
+			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, 4);
+		} else if (card instanceof EnergyCard) {
+			Display.printColorDesign(Util.readDesignString("energy_card"), MAIN_COLOR, SECONDARY_COLOR, ((EnergyCard) card).type.color, 4);
+		}
+		
+		while (true);
+//		Pokedeck.scanner.nextLine();
 	}
 	
 }
