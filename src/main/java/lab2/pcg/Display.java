@@ -1,5 +1,8 @@
 package lab2.pcg;
 
+import java.awt.*;
+
+
 public class Display {
 	
 	public static void initDisplay() {
@@ -10,8 +13,6 @@ public class Display {
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 			disableAlternativeScreenBuffer();
-//			enableLineWrap();
-//			showCursor();
 			resetTerminalSettings();
 		}));
 	}
@@ -33,6 +34,8 @@ public class Display {
 	public static void showCursor() {printCSICode("?25h");}
 	public static void hideCursor() {printCSICode("?25l");}
 	
+	
+	
 	public static void cursorPosition(int n, int m) {printCSICode(n + ";" + m + "H");}
 	public static void horizontalVerticalPosition(int n, int m) {printCSICode(n + ";" + m + "f");}
 	
@@ -41,6 +44,16 @@ public class Display {
 	
 	public static void saveCurrentCursorPosition() {printCSICode("s");}
 	public static void restoreSavedCursorPosition() {printCSICode("u");}
+	
+	
+	
+	public static void resetStyle() {printCSICode("0m");}
+	
+	public static void setForegroundColor(Color c) {setForegroundColor(c.getRed(), c.getGreen(), c.getBlue());}
+	public static void setBackgroundColor(Color c) {setBackgroundColor(c.getRed(), c.getGreen(), c.getBlue());}
+	public static void setForegroundColor(int r, int g, int b) {printCSICode("38;2;"+r+";"+g+";"+b+"m");}
+	public static void setBackgroundColor(int r, int g, int b) {printCSICode("48;2;"+r+";"+g+";"+b+"m");}
+	
 	
 	
 	private static void printESCCode(String code) {
