@@ -61,11 +61,24 @@ public class Display {
 	
 	
 	
-	public static void printColorDesign(String design, Color highlightColor) {
+	public static void printColorDesign(String design, Color mainColor, Color highlightColor, int offset) {
+		String offsetString = "@" + " ".repeat(offset);
+		
+		design = offsetString + design
+				.replaceAll("\n", "\n" + offsetString);
+		
 		design = design
-				.replaceAll("€", buildColorCode(highlightColor, false))
-				.replaceAll("ç", buildColorCode(highlightColor, true))
-				.replaceAll("§", CSI);
+				.replaceAll("°M", CSI + buildColorCode(mainColor, true))
+				.replaceAll("°m", CSI + buildColorCode(mainColor, false))
+				.replaceAll("°H", CSI + buildColorCode(highlightColor, true))
+				.replaceAll("°h", CSI + buildColorCode(highlightColor, false))
+				.replaceAll("°W", CSI + buildColorCode(Color.WHITE, true))
+				.replaceAll("°w", CSI + buildColorCode(Color.WHITE, false))
+				.replaceAll("°B", CSI + buildColorCode(Color.BLACK, true))
+				.replaceAll("°b", CSI + buildColorCode(Color.BLACK, false))
+				.replaceAll("§", CSI)
+				.replaceAll("@", CSI + "0m");
+		
 		System.out.print(design);
 		System.out.flush();
 	}

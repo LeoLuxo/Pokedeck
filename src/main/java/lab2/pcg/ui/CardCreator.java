@@ -1,5 +1,6 @@
 package lab2.pcg.ui;
 
+import lab2.pcg.Display;
 import lab2.pcg.Pokedeck;
 import lab2.pcg.PokedeckManager;
 import lab2.pcg.Util;
@@ -7,6 +8,8 @@ import lab2.pcg.deck.card.Card;
 import lab2.pcg.deck.card.EnergyCard;
 import lab2.pcg.deck.card.PokemonCard;
 import lab2.pcg.deck.card.TrainerCard;
+
+import java.awt.*;
 
 
 public class CardCreator {
@@ -75,6 +78,9 @@ public class CardCreator {
 		
 		System.out.print("ENERGY TYPE: ");
 		card.type = Util.requestEnergyType();
+		
+		Display.printColorDesign(Util.readDesignString("energy_card"), new Color(198, 195, 193), card.type.color, 4);
+		Pokedeck.scanner.nextLine();
 	}
 	
 }

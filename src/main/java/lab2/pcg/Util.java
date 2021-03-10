@@ -4,6 +4,9 @@ import lab2.pcg.deck.enums.EnergyType;
 import lab2.pcg.deck.enums.Expansion;
 import lab2.pcg.deck.enums.TrainerType;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.function.Function;
 
 
@@ -78,12 +81,23 @@ public class Util {
 	
 	
 	
+	public static String readDesignString(String name) {
+		try {
+			return Files.readString(Path.of("art_assets/" + name + ".txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	
 	private static String requestInput(Function<String, Boolean> condition) {
 		while (true) {
 			String input = Pokedeck.scanner.nextLine();
 			
 			if (condition.apply(input)) {
-				Display.horizontalVerticalPosition(1, 1);
+//				Display.horizontalVerticalPosition(1, 1);
 				return input;
 			}
 		}
