@@ -1,6 +1,7 @@
 package lab2.pcg;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lab2.pcg.deck.CardDeck;
 
 import java.io.*;
@@ -38,7 +39,7 @@ public class PokedeckManager {
 		
 		try {
 			FileWriter fw = new FileWriter(outputFile);
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			fw.write(gson.toJson(deck));
 			fw.close();
 		} catch (IOException e) {
