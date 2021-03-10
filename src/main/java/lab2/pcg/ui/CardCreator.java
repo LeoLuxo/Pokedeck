@@ -42,6 +42,8 @@ public class CardCreator {
 			designEnergyCard(card);
 		}
 		
+		displayCard(card, 2, 4);
+		
 		Pokedeck.loadedDeck.addCard(card);
 		PokedeckManager.saveDeck(Pokedeck.loadedDeck);
 	}
@@ -70,8 +72,6 @@ public class CardCreator {
 		}
 		System.out.print("TYPE: ");
 		card.type = Util.requestEnergyType();
-		
-		displayCard(card);
 	}
 	
 	private static void designTrainerCard(Card baseCard) {
@@ -79,8 +79,6 @@ public class CardCreator {
 		
 		System.out.print("TRAINER CARD TYPE: ");
 		card.type = Util.requestTrainerType();
-		
-		displayCard(card);
 	}
 	
 	public static void designEnergyCard(Card baseCard) {
@@ -88,20 +86,18 @@ public class CardCreator {
 		
 		System.out.print("ENERGY TYPE: ");
 		card.type = Util.requestEnergyType();
-		
-		displayCard(card);
 	}
 	
-	public static void displayCard(Card card) {
+	public static void displayCard(Card card, int row, int col) {
 		Display.eraseInDisplayFull();
-		Display.cursorPosition(1, 1);
+		Display.cursorPosition(row, 1);
 		
 		if (card instanceof PokemonCard) {
-			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, ((PokemonCard) card).type.color, 4);
+			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, ((PokemonCard) card).type.color, col);
 		} else if (card instanceof TrainerCard) {
-			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, 4);
+			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
 		} else if (card instanceof EnergyCard) {
-			Display.printColorDesign(Util.readDesignString("energy_card"), MAIN_COLOR, SECONDARY_COLOR, ((EnergyCard) card).type.color, 4);
+			Display.printColorDesign(Util.readDesignString("energy_card"), MAIN_COLOR, SECONDARY_COLOR, ((EnergyCard) card).type.color, col);
 		}
 		
 		while (true);
