@@ -17,7 +17,7 @@ public enum EnergyType {
 	METAL("Metal", Color.decode("#73848C")),
 	DRAGON("Dragon", Color.decode("#C49F1A")),
 	FAIRY("Fairy", Color.decode("#DA4586")),
-	ANY("Rainbow", Color.decode("#EFDCA3")),
+	RAINBOW("Rainbow", Color.decode("#EFDCA3")),
 	SPECIAL("Other/Special", Color.decode("#D4DBDF"));
 	
 	public final String displayName;
