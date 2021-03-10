@@ -83,6 +83,7 @@ public class Util {
 			String input = Pokedeck.scanner.nextLine();
 			
 			if (condition.apply(input)) {
+				Display.horizontalVerticalPosition(1, 1);
 				return input;
 			}
 		}

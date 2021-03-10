@@ -14,6 +14,8 @@ public class Pokedeck {
   
   public static void main(String[] args) {
     
+    Display.initDisplay();
+    
     scanner = new Scanner(System.in);
     
     loadedDeck = Authentication.askDeck();
