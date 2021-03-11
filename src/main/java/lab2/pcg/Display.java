@@ -11,7 +11,7 @@ public class Display {
 	
 	
 	public static void initDisplay() {
-//		enableAlternativeScreenBuffer();
+		enableAlternativeScreenBuffer();
 		disableLineWrap();
 		hideCursor();
 		setOriginAbsolute();
