@@ -12,6 +12,7 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 	public JsonElement serialize(Card card, Type type, JsonSerializationContext context) {
 		JsonObject obj = new JsonObject();
 		obj.addProperty("type", card.getClass().getSimpleName());
+		// Weird trick / workaround to be able to call the default serializer, instead of using context which would lead to infinite recursion
 		obj.add("card", new Gson().toJsonTree(card));
 		System.out.println("SERIALIZE: " + obj);
 		return obj;
@@ -24,6 +25,7 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 		String cardTypeName = json.get("type").getAsString();
 		Class<? extends Card> cardType;
 		
+		// Could probably be done less redundandly using reflection, but I didn't want to overcomplicate stuff even more
 		if (cardTypeName.equals("PokemonCard")) {
 			cardType = PokemonCard.class;
 		} else if (cardTypeName.equals("TrainerCard")) {
@@ -34,6 +36,7 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 			throw new JsonParseException("Card type \"" + cardTypeName + "\" not defined");
 		}
 		
+		// Weird trick / workaround to be able to call the default deserializer, instead of using context which would lead to infinite recursion
 		card = new Gson().fromJson(json.get("card"), cardType);
 		System.out.println("DESERIALIZE: " + json.get("card"));
 		return card;

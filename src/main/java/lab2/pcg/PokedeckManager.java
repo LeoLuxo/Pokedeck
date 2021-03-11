@@ -21,6 +21,7 @@ public class PokedeckManager {
 		try {
 			FileReader reader = new FileReader(getJsonFile(name));
 			
+			// We have to use a custom deserializer for Card to avoid losing data due to serializing through a superclass
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.registerTypeAdapter(Card.class, new CardAdapter());
 			Gson gson = gsonBuilder.create();
@@ -44,6 +45,7 @@ public class PokedeckManager {
 		try {
 			FileWriter fw = new FileWriter(outputFile);
 			
+			// We have to use a custom serializer for Card to match the deserializer
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.setPrettyPrinting();
 			gsonBuilder.registerTypeAdapter(Card.class, new CardAdapter());
