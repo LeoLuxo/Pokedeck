@@ -1,16 +1,28 @@
 package lab2.pcg.deck.card;
 
+import lab2.pcg.Display;
+import lab2.pcg.Util;
 import lab2.pcg.deck.enums.Expansion;
 import lab2.pcg.deck.enums.TrainerType;
+
+import java.awt.*;
 
 
 public class TrainerCard extends Card {
 	
 	public TrainerType type = TrainerType.NONE;
 	
-//	public TrainerCard(String name, String description, int cardNumber, Expansion expansionSymbol, TrainerType type) {
-//		super(name, description, cardNumber, expansionSymbol);
-//		this.type = type;
-//	}
+	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
+	
+	@Override
+	public void displayCard(int row, int col, boolean fullDraw) {
+		if (fullDraw)
+			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
+		
+		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR);
+		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR);
+		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
+		Display.printRightAlignedString(cardNumber + " / " + expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
+	}
 
 }
