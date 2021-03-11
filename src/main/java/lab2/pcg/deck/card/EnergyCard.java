@@ -22,7 +22,7 @@ public class EnergyCard extends Card {
 		Display.printRightAlignedString(type.displayName, row, col+36, type.color, Color.BLACK);
 		Display.printLeftAlignedString(name, row+19, col+2, Color.BLACK, MAIN_COLOR);
 		Display.printWrappedString(description, row+20, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
-		Display.printRightAlignedString(cardNumber + " / " + expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
+		printExpansion(row, col, MAIN_COLOR);
 	}
 
 }

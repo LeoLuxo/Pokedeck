@@ -27,7 +27,7 @@ public class PokemonCard extends Card {
 		Display.printLeftAlignedString("Stage " + stage + (evolvesFrom.length() == 0 ? "" : " ← " + evolvesFrom), row+2, col+2, Color.BLACK, MAIN_COLOR);
 		Display.printRightAlignedString("HP " + hp, row+1, col+36, Color.BLACK, type.color);
 		Display.printWrappedString(description, row+13, col+2, Color.BLACK, type.color, 12, 34);
-		Display.printRightAlignedString(cardNumber + " / " + expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
+		printExpansion(row, col, MAIN_COLOR);
 	}
 
 }

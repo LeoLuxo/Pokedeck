@@ -1,5 +1,6 @@
 package lab2.pcg.deck.card;
 
+import lab2.pcg.Display;
 import lab2.pcg.deck.enums.Expansion;
 
 import java.awt.*;
@@ -21,5 +22,9 @@ public abstract class Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	public abstract void displayCard(int row, int col, boolean fullDraw);
+	
+	protected void printExpansion(int row, int col, Color bgColor) {
+		Display.printRightAlignedString(cardNumber + "/" + expansionSymbol, row+25, col+36, Color.BLACK, bgColor);
+	}
 	
 }

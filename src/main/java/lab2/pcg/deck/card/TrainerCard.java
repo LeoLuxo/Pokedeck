@@ -22,7 +22,7 @@ public class TrainerCard extends Card {
 		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR);
 		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR);
 		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
-		Display.printRightAlignedString(cardNumber + " / " + expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
+		printExpansion(row, col, SECONDARY_COLOR);
 	}
 
 }

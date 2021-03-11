@@ -90,8 +90,10 @@ public class CardCreator {
 		
 		card.displayCard(row, col, true);
 		
-//		while (true);
-//		if (Pokedeck.scanner.hasNext())
+		Display.resetStyle();
+		
+		if (!Pokedeck.scanner.hasNext())
+			while (true);
 //			Pokedeck.scanner.nextLine();
 	}
 	
