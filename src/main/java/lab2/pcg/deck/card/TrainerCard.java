@@ -15,14 +15,21 @@ public class TrainerCard extends Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	@Override
-	public void displayCard(int row, int col, boolean fullDraw) {
+	public void displayCard(int row, int col, boolean fullDraw, int selection) {
+		Display.resetSelection();
+		
 		if (fullDraw)
 			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
 		
-		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR);
-		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR);
-		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
-		printExpansion(row, col, SECONDARY_COLOR);
+		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR, selection);
+		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR, selection);
+		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34, selection);
+		printExpansion(row, col, SECONDARY_COLOR, selection);
+	}
+	
+	@Override
+	public int getNumberOfSelectables() {
+		return 4;
 	}
 
 }

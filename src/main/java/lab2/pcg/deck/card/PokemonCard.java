@@ -18,16 +18,23 @@ public class PokemonCard extends Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	@Override
-	public void displayCard(int row, int col, boolean fullDraw) {
+	public void displayCard(int row, int col, boolean fullDraw, int selection) {
+		Display.resetSelection();
+		
 		if (fullDraw)
 			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, type.color, col);
 		
-		Display.printRightAlignedString(type.displayName, row, col+36, type.color, Color.BLACK);
-		Display.printLeftAlignedString(name, row+1, col+1, Color.BLACK, type.color);
-		Display.printLeftAlignedString("Stage " + stage + (evolvesFrom.length() == 0 ? "" : " ← " + evolvesFrom), row+2, col+2, Color.BLACK, MAIN_COLOR);
-		Display.printRightAlignedString("HP " + hp, row+1, col+36, Color.BLACK, type.color);
-		Display.printWrappedString(description, row+13, col+2, Color.BLACK, type.color, 12, 34);
-		printExpansion(row, col, MAIN_COLOR);
+		Display.printRightAlignedString(type.displayName, row, col+36, type.color, Color.BLACK, selection);
+		Display.printLeftAlignedString(name, row+1, col+1, Color.BLACK, type.color, selection);
+		Display.printRightAlignedString("HP " + hp, row+1, col+36, Color.BLACK, type.color, selection);
+		Display.printLeftAlignedString("Stage " + stage + (evolvesFrom.length() == 0 ? "" : " ← " + evolvesFrom), row+2, col+2, Color.BLACK, MAIN_COLOR, selection);
+		Display.printWrappedString(description, row+13, col+2, Color.BLACK, type.color, 12, 34, selection);
+		printExpansion(row, col, MAIN_COLOR, selection);
 	}
-
+	
+	@Override
+	public int getNumberOfSelectables() {
+		return 6;
+	}
+	
 }

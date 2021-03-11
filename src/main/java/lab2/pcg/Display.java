@@ -9,6 +9,11 @@ public class Display {
 	private static final String CSI = ESC + "[";
 	
 	
+	// Due to the nature of the console-based rendering, everything is always drawn sequencially.
+	// We can take advantage of this and keep the selection stage global.
+	private static int selectionCount = 0;
+	
+	
 	
 	public static void initDisplay() {
 		enableAlternativeScreenBuffer();
@@ -75,6 +80,9 @@ public class Display {
 	public static void setForegroundColor(int r, int g, int b) {printCSICode(buildColorCode(r, g, b, false));}
 	public static void setBackgroundColor(int r, int g, int b) {printCSICode(buildColorCode(r, g, b, true));}
 	
+	public static void setUnderlineOn() {printCSICode("4m");}
+	public static void setUnderlineOff() {printCSICode("24m");}
+	
 	
 	
 	public static void printColorDesign(String design, Color mainColor, Color secondaryColor, Color highlightColor, int offset) {
@@ -100,23 +108,23 @@ public class Display {
 		System.out.flush();
 	}
 	
-	public static void printLeftAlignedString(String string, int row, int col, Color fgColor, Color bgColor) {
-		Display.setForegroundColor(fgColor);
-		Display.setBackgroundColor(bgColor);
-		Display.cursorPosition(row, col);
+	public static void printLeftAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection) {
+		checkSelection(fgColor, bgColor, selection);
+		cursorPosition(row, col);
 		
 		System.out.print(string);
 		System.out.flush();
+		
+		resetStyle();
 	}
 	
-	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor) {
-		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor);
+	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection) {
+		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor, selection);
 	}
 	
-	public static void printWrappedString(String string, int row, int col, Color fgColor, Color bgColor, int maxRow, int maxCol) {
-		Display.setForegroundColor(fgColor);
-		Display.setBackgroundColor(bgColor);
-		Display.cursorPosition(row, col);
+	public static void printWrappedString(String string, int row, int col, Color fgColor, Color bgColor, int maxRow, int maxCol, int selection) {
+		checkSelection(fgColor, bgColor, selection);
+		cursorPosition(row, col);
 		
 		char[] chars = string.toCharArray();
 		int rowOffset = 0;
@@ -125,7 +133,7 @@ public class Display {
 			System.out.print(chars[i]);
 			
 			if (i % maxCol == maxCol-1) {
-				Display.cursorPosition(row, col);
+				cursorPosition(row, col);
 				rowOffset += 1;
 				cursorDown(rowOffset);
 			}
@@ -134,8 +142,26 @@ public class Display {
 				break;
 			}
 		}
-		
 		System.out.flush();
+		
+		resetStyle();
+	}
+	
+	
+	
+	public static void resetSelection() {
+		selectionCount = 0;
+	}
+	
+	private static void checkSelection(Color fgColor, Color bgColor, int selection) {
+		if (selection == selectionCount++) {
+			setUnderlineOn();
+			fgColor = invertColor(fgColor);
+			bgColor = invertColor(bgColor);
+		}
+		
+		setForegroundColor(fgColor);
+		setBackgroundColor(bgColor);
 	}
 	
 	
@@ -157,6 +183,10 @@ public class Display {
 	
 	private static String buildColorCode(int r, int g, int b, boolean background) {
 		return background ? "48;2;"+r+";"+g+";"+b+"m" : "38;2;"+r+";"+g+";"+b+"m";
+	}
+	
+	private static Color invertColor(Color color) {
+		return new Color(255 - color.getRed(), 255 - color.getGreen(), 255 - color.getBlue());
 	}
 	
 }

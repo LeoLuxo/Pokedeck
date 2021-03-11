@@ -88,7 +88,7 @@ public class CardCreator {
 		Display.eraseInDisplayFull();
 		Display.cursorPosition(row, 1);
 		
-		card.displayCard(row, col, true);
+		card.displayCard(row, col, true, -1);
 		
 		Display.resetStyle();
 		
