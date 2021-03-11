@@ -16,10 +16,12 @@ public class Display {
 		hideCursor();
 		setOriginAbsolute();
 		
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			disableAlternativeScreenBuffer();
-			resetTerminalSettings();
-		}));
+		Runtime.getRuntime().addShutdownHook(new Thread(Display::exitDisplay));
+	}
+	
+	public static void exitDisplay() {
+		disableAlternativeScreenBuffer();
+		resetTerminalSettings();
 	}
 	
 	
