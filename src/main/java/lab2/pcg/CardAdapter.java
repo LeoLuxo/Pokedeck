@@ -14,7 +14,6 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 		obj.addProperty("type", card.getClass().getSimpleName());
 		// Weird trick / workaround to be able to call the default serializer, instead of using context which would lead to infinite recursion
 		obj.add("card", new Gson().toJsonTree(card));
-		System.out.println("SERIALIZE: " + obj);
 		return obj;
 	}
 	
@@ -38,7 +37,6 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 		
 		// Weird trick / workaround to be able to call the default deserializer, instead of using context which would lead to infinite recursion
 		card = new Gson().fromJson(json.get("card"), cardType);
-		System.out.println("DESERIALIZE: " + json.get("card"));
 		return card;
 	}
 	
