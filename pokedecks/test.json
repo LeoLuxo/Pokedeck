@@ -1,6 +1,12 @@
 {
   "cards": [
     {
+      "name": "Blastoise",
+      "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
+      "cardNumber": 25,
+      "expansionSymbol": "TEU"
+    },
+    {
       "hp": 160,
       "stage": 2,
       "evolvesFrom": "Wartortle",
@@ -9,16 +15,6 @@
       "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
       "cardNumber": 25,
       "expansionSymbol": "TEU"
-    },
-    {
-      "hp": 70,
-      "stage": 0,
-      "evolvesFrom": "",
-      "type": "LIGHTNING",
-      "name": "Pikachu",
-      "description": "Its nature is to store up electricity. Forests where nests of Pikachu live are dangerous, since the trees are so often struck by lightning.",
-      "cardNumber": 241,
-      "expansionSymbol": "CEC"
     }
   ]
 }

@@ -88,20 +88,55 @@ public class CardCreator {
 		card.type = Util.requestEnergyType();
 	}
 	
-	private static void displayCard(Card card, int row, int col) {
+	public static void displayCard(Card card, int row, int col) {
 		Display.eraseInDisplayFull();
 		Display.cursorPosition(row, 1);
 		
+		// TODO: Change
 		if (card instanceof PokemonCard) {
-			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, ((PokemonCard) card).type.color, col);
+			displayPokemonCard((PokemonCard) card, row, col, true);
 		} else if (card instanceof TrainerCard) {
-			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
+			displayTrainerCard((TrainerCard) card, row, col, true);
 		} else if (card instanceof EnergyCard) {
-			Display.printColorDesign(Util.readDesignString("energy_card"), MAIN_COLOR, SECONDARY_COLOR, ((EnergyCard) card).type.color, col);
+			displayEnergyCard((EnergyCard) card, row, col, true);
 		}
 		
+		System.out.println(card.getClass().getSimpleName());
 		while (true);
-//		Pokedeck.scanner.nextLine();
+//		if (Pokedeck.scanner.hasNext())
+//			Pokedeck.scanner.nextLine();
+	}
+	
+	private static void displayPokemonCard(PokemonCard card, int row, int col, boolean fullDraw) {
+		if (fullDraw)
+			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, card.type.color, col);
+		
+		Display.printRightAlignedString(card.type.displayName, row, col+36, card.type.color, Color.BLACK);
+		Display.printLeftAlignedString(card.name, row+1, col+1, Color.BLACK, card.type.color);
+		Display.printLeftAlignedString("Stage " + card.stage + (card.evolvesFrom.length() == 0 ? "" : ": " + card.evolvesFrom), row+2, col+2, Color.BLACK, MAIN_COLOR);
+		Display.printRightAlignedString("HP " + card.hp, row+1, col+36, Color.BLACK, card.type.color);
+		Display.printWrappedString(card.description, row+13, col+2, Color.BLACK, card.type.color, 12, 34);
+		Display.printRightAlignedString(card.cardNumber + "/00 " + card.expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
+	}
+	
+	private static void displayTrainerCard(TrainerCard card, int row, int col, boolean fullDraw) {
+		if (fullDraw)
+			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
+		
+		Display.printRightAlignedString(card.type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR);
+		Display.printRightAlignedString(card.name, row+2, col+35, Color.BLACK, MAIN_COLOR);
+		Display.printWrappedString(card.description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
+		Display.printRightAlignedString(card.cardNumber + "/00 " + card.expansionSymbol, row+25, col+36, Color.BLACK, SECONDARY_COLOR);
+	}
+	
+	private static void displayEnergyCard(EnergyCard card, int row, int col, boolean fullDraw) {
+		if (fullDraw)
+			Display.printColorDesign(Util.readDesignString("energy_card"), MAIN_COLOR, SECONDARY_COLOR, card.type.color, col);
+		
+		Display.printRightAlignedString(card.type.displayName, row, col+36, card.type.color, Color.BLACK);
+		Display.printLeftAlignedString(card.name, row+19, col+2, Color.BLACK, MAIN_COLOR);
+		Display.printWrappedString(card.description, row+20, col+2, Color.BLACK, MAIN_COLOR, 12, 34);
+		Display.printRightAlignedString(card.cardNumber + "/00 " + card.expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR);
 	}
 	
 }

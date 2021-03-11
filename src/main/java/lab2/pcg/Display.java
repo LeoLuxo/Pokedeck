@@ -53,6 +53,11 @@ public class Display {
 	
 	public static void cursorPosition(int n, int m) {printCSICode(n + ";" + m + "H");}
 	
+	public static void cursorUp(int n) {printCSICode(n + "A");}
+	public static void cursorDown(int n) {printCSICode(n + "B");}
+	public static void cursorRight(int n) {printCSICode(n + "C");}
+	public static void cursorLeft(int n) {printCSICode(n + "D");}
+	
 	public static void cursorNextLine(int n) {printCSICode(n + "E");}
 	public static void cursorPreviousLine(int n) {printCSICode(n + "F");}
 	
@@ -71,7 +76,7 @@ public class Display {
 	
 	
 	public static void printColorDesign(String design, Color mainColor, Color secondaryColor, Color highlightColor, int offset) {
-		String offsetString = CSI+(offset-1)+"G";
+		String offsetString = CSI+offset+"G";
 		design = offsetString + design
 				.replaceAll("\n", CSI+"1E" + offsetString);
 		
@@ -90,6 +95,44 @@ public class Display {
 				.replaceAll("@", CSI + "0m");
 		
 		System.out.print(design);
+		System.out.flush();
+	}
+	
+	public static void printLeftAlignedString(String string, int row, int col, Color fgColor, Color bgColor) {
+		Display.setForegroundColor(fgColor);
+		Display.setBackgroundColor(bgColor);
+		Display.cursorPosition(row, col);
+		
+		System.out.print(string);
+		System.out.flush();
+	}
+	
+	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor) {
+		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor);
+	}
+	
+	public static void printWrappedString(String string, int row, int col, Color fgColor, Color bgColor, int maxRow, int maxCol) {
+		Display.setForegroundColor(fgColor);
+		Display.setBackgroundColor(bgColor);
+		Display.cursorPosition(row, col);
+		
+		char[] chars = string.toCharArray();
+		int rowOffset = 0;
+		
+		for (int i = 0; i < chars.length; i++) {
+			System.out.print(chars[i]);
+			
+			if (i % maxCol == maxCol-1) {
+				Display.cursorPosition(row, col);
+				rowOffset += 1;
+				cursorDown(rowOffset);
+			}
+			
+			if (rowOffset == maxRow) {
+				break;
+			}
+		}
+		
 		System.out.flush();
 	}
 	
