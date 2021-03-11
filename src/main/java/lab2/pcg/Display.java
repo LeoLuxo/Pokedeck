@@ -9,36 +9,43 @@ public class Display {
 	private static final String CSI = ESC + "[";
 	
 	
-	// Due to the nature of the console-based rendering, everything is always drawn sequencially.
-	// We can take advantage of this and keep the selection stage global.
+	
 	private static int selectionCount = 0;
 	
 	
 	
 	public static void initDisplay() {
 		enableAlternativeScreenBuffer();
-		disableLineWrap();
 		hideCursor();
-		setOriginAbsolute();
+		resetStyle();
+		eraseInDisplayFull();
+		
+		try {
+			// Puts the unix terminal in "raw mode", where keyboard inputs are not buffered nor checked by the system. This means we can use the arrow keys or other keys
+			// Doing this however is VERY. DANGEROUS. If CTRL-C input is not checked on it will completely softlock the terminal/unix system inside the java program
+			Runtime.getRuntime().exec(new String[] {"/bin/sh", "-c", "stty raw </dev/tty"}).waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(Display::exitDisplay));
 	}
 	
 	public static void exitDisplay() {
+		try {
+			Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "stty sane </dev/tty"}).waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		disableAlternativeScreenBuffer();
-		resetTerminalSettings();
+		showCursor();
 	}
 	
 	
 	
+	// USE CAREFULLY!!! SIDE EFFECT: Clears the scrollback line buffer of the terminal
 	public static void resetTerminalSettings() {printESCCode("c");}
-	
-	public static void setOriginRelative() {printCSICode("?6h");}
-	public static void setOriginAbsolute() {printCSICode("?6l");}
-	
-	// Doesn't seem to work on the WLS Ubuntu terminal
-	public static void enableLineWrap() {printCSICode("7h");}
-	public static void disableLineWrap() {printCSICode("7l");}
 	
 	public static void enableAlternativeScreenBuffer() {printCSICode("?1049h");}
 	public static void disableAlternativeScreenBuffer() {printCSICode("?1049l");}
@@ -73,15 +80,21 @@ public class Display {
 	
 	
 	
-	public static void resetStyle() {printCSICode("0m");}
+	public static void resetStyle() {
+		printCSICode("0m");
+		setColor(Color.WHITE, Color.BLACK);
+	}
 	
 	public static void setForegroundColor(Color c) {printCSICode(buildColorCode(c, false));}
 	public static void setBackgroundColor(Color c) {printCSICode(buildColorCode(c, true));}
-	public static void setForegroundColor(int r, int g, int b) {printCSICode(buildColorCode(r, g, b, false));}
-	public static void setBackgroundColor(int r, int g, int b) {printCSICode(buildColorCode(r, g, b, true));}
 	
 	public static void setUnderlineOn() {printCSICode("4m");}
 	public static void setUnderlineOff() {printCSICode("24m");}
+	
+	public static void setColor(Color fg, Color bg) {
+		setForegroundColor(fg);
+		setBackgroundColor(bg);
+	}
 	
 	
 	
@@ -102,7 +115,7 @@ public class Display {
 				.replaceAll("°B", CSI + buildColorCode(Color.BLACK, true))
 				.replaceAll("°b", CSI + buildColorCode(Color.BLACK, false))
 				.replaceAll("§", CSI)
-				.replaceAll("@", CSI + "0m");
+				.replaceAll("@", CSI+"0m" + CSI+buildColorCode(Color.WHITE, false) + CSI+buildColorCode(Color.BLACK, true));
 		
 		System.out.print(design);
 		System.out.flush();
@@ -160,8 +173,7 @@ public class Display {
 			bgColor = invertColor(bgColor);
 		}
 		
-		setForegroundColor(fgColor);
-		setBackgroundColor(bgColor);
+		setColor(fgColor, bgColor);
 	}
 	
 	
