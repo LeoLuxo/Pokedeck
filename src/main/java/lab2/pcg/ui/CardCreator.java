@@ -101,8 +101,7 @@ public class CardCreator {
 			displayEnergyCard((EnergyCard) card, row, col, true);
 		}
 		
-		System.out.println(card.getClass().getSimpleName());
-		while (true);
+//		while (true);
 //		if (Pokedeck.scanner.hasNext())
 //			Pokedeck.scanner.nextLine();
 	}
