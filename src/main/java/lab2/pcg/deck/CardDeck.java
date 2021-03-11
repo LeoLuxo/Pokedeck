@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class CardDeck {
 	public transient String name;
 	
-	// TODO: FIX MAJOR SAVING BUG, when saving to json after loading, will remove all subclass attributes
 	private List<Card> cards = new ArrayList<>();
 	
 	public CardDeck(String name) {
