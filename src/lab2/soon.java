@@ -90,6 +90,30 @@ import java.util.Scanner;
 
           }System.out.println("The min value is "+ min2 +" and your max value is " + max2);
 
+
+          //Exercise 10
+
+          System.out.println("Which shape would you like to draw? Please type r for rectangle, c for circle and t for triangle.");
+          String shape = input.scanner.nextLine();
+          String rectangle ="r";
+          String circle = "c";
+          String triangle ="t";
+          if (shape.equalsIgnoreCase(rectangle)){
+              System.out.println("Please input the width of the rectangle");
+              Int width = input.scanner.nextInt();
+              System.out.println("Please input the height of the rectangle");
+              Int height = input.scanner.nextInt();
+
+          }
+          else if (shape.equalsIgnoreCase(circle)){
+            Circle.draw()
+          }
+          else if (shape.equalsIgnoreCase(triangle)){
+            Triangle.draw()
+          }
+          else{
+            System.out.println("Sorry, not a valid char, try again.") //add loop to vaildate input
+          }
         }
 
 
