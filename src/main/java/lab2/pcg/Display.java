@@ -131,20 +131,20 @@ public class Display {
 		System.out.flush();
 	}
 	
-	public static void printSimpleString(String string, int row, int col, boolean clearLine) {
+	public static void printSimpleString(String string, int row, int col) {
 		cursorPosition(row, col);
-		if (clearLine)
-			eraseInLineFromCursor();
 		
 		System.out.print(string);
 		System.out.flush();
 	}
 	
 	public static void printSimpleString(String string, int row, int col, Color fgColor, Color bgColor, boolean clearLine) {
-		setColor(fgColor, bgColor);
 		cursorPosition(row, col);
-		if (clearLine)
+		if (clearLine) {
+			resetStyle();
 			eraseInLineFromCursor();
+		}
+		setColor(fgColor, bgColor);
 		
 		System.out.print(string);
 		System.out.flush();

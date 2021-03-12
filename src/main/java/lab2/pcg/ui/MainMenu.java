@@ -21,7 +21,7 @@ public class MainMenu {
 		while (true) {
 			switchMenu();
 			// Ask user for name
-			Display.printSimpleString("Welcome trainer! What deck do you wish to load?", menuRow, menuCol, true);
+			Display.printSimpleString("Welcome trainer! What deck do you wish to load?", menuRow, menuCol);
 			String name = Util.requestString(1, 16, menuRow+2, menuCol).strip().replaceAll("\\W+", "_");
 			
 			// Call deckExists method from PokedeckManager class to see if it exists.
@@ -41,7 +41,7 @@ public class MainMenu {
 	
 	public static boolean askNewDeck(String name) {
 		switchMenu();
-		Display.printSimpleString("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"?", menuRow, menuCol, true);
+		Display.printSimpleString("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"?", menuRow, menuCol);
 		int answer = Util.requestMultiChoiceInput(new String[]{"YES", "NO"}, menuRow+2, menuCol);
 		
 		if (answer == 0) {
@@ -55,8 +55,8 @@ public class MainMenu {
 	public static void mainMenuSelector() {
 		while (true) {
 			switchMenu();
-			Display.printSimpleString("Currently loaded deck: " + loadedDeck.name, menuRow, menuCol, true);
-			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol, true);
+			Display.printSimpleString("Currently loaded deck: " + loadedDeck.name, menuRow, menuCol);
+			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol);
 			
 			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol);
 			
