@@ -17,7 +17,7 @@ public abstract class Card {
 	public String description = "";
 	
 	public int cardNumber = 0;
-	public Expansion expansionSymbol = Expansion.BS;
+	public String expansionSymbol = "BS";
 	
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
