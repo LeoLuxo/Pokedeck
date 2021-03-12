@@ -2,7 +2,6 @@ package lab2.pcg.ui;
 
 
 import lab2.pcg.Display;
-import lab2.pcg.Pokedeck;
 import lab2.pcg.PokedeckManager;
 import lab2.pcg.Util;
 import lab2.pcg.deck.CardDeck;
@@ -14,12 +13,14 @@ public class MainMenu {
 	
 	private static CardDeck loadedDeck;
 	
-	private static final int menuRow = 3;
-	private static final int menuCol = 3;
+	private static final int logoRow = 10;
+	private static final int logoCol = 10;
+	private static final int menuRow = 17;
+	private static final int menuCol = 10;
 	
 	public static void askDeck() {
 		while (true) {
-			switchMenu();
+			drawMenu();
 			// Ask user for name
 			Display.printSimpleString("Welcome trainer! What deck do you wish to load?", menuRow, menuCol);
 			String name = Util.requestString(1, 16, menuRow+2, menuCol).strip().replaceAll("\\W+", "_");
@@ -40,7 +41,7 @@ public class MainMenu {
 	}
 	
 	public static boolean askNewDeck(String name) {
-		switchMenu();
+		drawMenu();
 		Display.printSimpleString("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"?", menuRow, menuCol);
 		int answer = Util.requestMultiChoiceInput(new String[]{"YES", "NO"}, menuRow+2, menuCol);
 		
@@ -54,7 +55,7 @@ public class MainMenu {
 
 	public static void mainMenuSelector() {
 		while (true) {
-			switchMenu();
+			drawMenu();
 			Display.printSimpleString("Currently loaded deck: " + loadedDeck.name, menuRow, menuCol);
 			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol);
 			
@@ -72,10 +73,16 @@ public class MainMenu {
 	
 	
 	
-	private static void switchMenu() {
-		Display.cursorPosition(menuRow, menuCol);
+	private static void drawMenu() {
+		Display.resetStyle();
+		Display.eraseInDisplayFull();
+		Display.cursorPosition(logoRow, logoCol);
+		Display.printColorDesign(Util.readDesignString("logo"), new Color(0, 100, 255), Color.BLACK, new Color(255, 150, 0), logoCol);
+		
 		Display.setColor(Color.WHITE, Color.BLACK);
-		Display.eraseInDisplayFromCursor();
+		Display.printSimpleString("by Léo G and Liz S", logoRow+3, logoCol);
+		
+		Display.cursorPosition(menuRow, menuCol);
 	}
 	
 

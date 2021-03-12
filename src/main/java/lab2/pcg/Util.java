@@ -50,6 +50,25 @@ public class Util {
 	
 	
 	
+	public static int requestChoiceBase() {
+		while (true) {
+			int input = requestSingleChar();
+			if (input == 27) { // ESC
+				requestSingleChar();
+				int arrowKey = requestSingleChar();
+				
+				if (arrowKey == 65 || arrowKey == 68) { // A -> UP, D -> LEFT
+					return -1;
+				} else if (arrowKey == 66 || arrowKey == 67) { // B -> DOWN, C -> RIGHT
+					return +1;
+				}
+				
+			} else if (input == 13) { // ENTER
+				return 0;
+			}
+		}
+	}
+	
 	public static int requestMultiChoiceInput(String[] options, int row, int col) {
 		String query = "Select option:";
 		
@@ -77,20 +96,12 @@ public class Util {
 					System.out.printf("  %-" + maxLength + "s  ", options[i]);
 			}
 			
-			int input = requestSingleChar();
-			if (input == 27) { // ESC
-				requestSingleChar();
-				int arrowKey = requestSingleChar();
-				
-				if (arrowKey == 65) { // A -> UP
-					selected = Math.max(selected - 1, 0);
-				} else if (arrowKey == 66) { // B -> DOWN
-					selected = Math.min(selected + 1, options.length - 1);
-				}
-				
-			} else if (input == 13) { // ENTER
+			int input = requestChoiceBase();
+			if (input == 0) {
 				break;
 			}
+			
+			selected = Math.max(Math.min(selected + input, options.length - 1), 0);
 		}
 		
 		Display.eraseZone(row, col, options.length+1, maxLength+4);
