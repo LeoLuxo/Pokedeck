@@ -20,12 +20,6 @@ public class Util {
 	
 	
 	
-	public static String sanitizeDeckNameInput(String input) {
-		return input.strip().replaceAll("\\W+", "_");
-	}
-	
-	
-	
 	public static String requestString(int minLength, int maxLength, int row, int col) {
 		String charWhitelist = " _-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		StringBuilder currentInput = new StringBuilder();
@@ -35,7 +29,7 @@ public class Util {
 			Display.cursorPosition(row, col);
 			System.out.printf("  %-" + (maxLength+1) + "s", "");
 			Display.cursorPosition(row, col);
-			System.out.printf("> " + currentInput.toString() + "_");
+			System.out.print("> " + currentInput.toString() + "_");
 			
 			char input = (char) requestSingleChar();
 			if (currentInput.length() < maxLength && charWhitelist.indexOf(input) >= 0) {
@@ -50,6 +44,7 @@ public class Util {
 			}
 		}
 		
+		Display.eraseZone(row, col, 1, maxLength+3);
 		return currentInput.toString();
 	}
 	
@@ -98,6 +93,7 @@ public class Util {
 			}
 		}
 		
+		Display.eraseZone(row, col, options.length+1, maxLength+4);
 		return selected;
 	}
 	

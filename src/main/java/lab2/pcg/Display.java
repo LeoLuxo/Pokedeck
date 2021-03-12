@@ -63,6 +63,16 @@ public class Display {
 	public static void eraseInLineToCursor() {printCSICode("1K");}
 	public static void eraseInLineFull() {printCSICode("2K");}
 	
+	public static void eraseZone(int row, int col, int height, int width) {
+		resetStyle();
+		for (int i = 0; i < height; i++) {
+			cursorPosition(row + i, col);
+			for (int j = 0; j < width; j++) {
+				System.out.print(" ");
+			}
+		}
+	}
+	
 	
 	
 	public static void cursorPosition(int n, int m) {printCSICode(n + ";" + m + "H");}
@@ -118,6 +128,25 @@ public class Display {
 				.replaceAll("@", CSI+"0m" + CSI+buildColorCode(Color.WHITE, false) + CSI+buildColorCode(Color.BLACK, true));
 		
 		System.out.print(design);
+		System.out.flush();
+	}
+	
+	public static void printSimpleString(String string, int row, int col, boolean clearLine) {
+		cursorPosition(row, col);
+		if (clearLine)
+			eraseInLineFromCursor();
+		
+		System.out.print(string);
+		System.out.flush();
+	}
+	
+	public static void printSimpleString(String string, int row, int col, Color fgColor, Color bgColor, boolean clearLine) {
+		setColor(fgColor, bgColor);
+		cursorPosition(row, col);
+		if (clearLine)
+			eraseInLineFromCursor();
+		
+		System.out.print(string);
 		System.out.flush();
 	}
 	

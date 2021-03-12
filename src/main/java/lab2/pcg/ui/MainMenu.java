@@ -5,14 +5,15 @@ import lab2.pcg.Display;
 import lab2.pcg.Pokedeck;
 import lab2.pcg.Util;
 
+import java.awt.*;
+
 
 public class MainMenu {
 
 	public static void mainMenuSelector() {
 		while (true) {
-			Display.cursorPosition(4, 2);
-			System.out.println("Currently loaded deck: " + Pokedeck.loadedDeck.name);
-			System.out.println("What would you like to do?\n1) Add a card\n2) View/Search collection\n3) Switch deck");
+			Display.printSimpleString("Currently loaded deck: " + Pokedeck.loadedDeck.name, 4, 2, Color.WHITE, Color.BLACK, true);
+			Display.printSimpleString("What would you like to do?", 5, 2, true);
 			
 			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, 6, 2);
 			
