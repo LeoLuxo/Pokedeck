@@ -18,8 +18,10 @@ public class TrainerCard extends Card {
 	public void displayCard(int row, int col, boolean fullDraw, int selection) {
 		Display.resetSelection();
 		
-		if (fullDraw)
+		if (fullDraw) {
+			Display.cursorPosition(row, 1);
 			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
+		}
 		
 		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR, selection);
 		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR, selection);

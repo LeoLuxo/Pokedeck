@@ -21,8 +21,10 @@ public class PokemonCard extends Card {
 	public void displayCard(int row, int col, boolean fullDraw, int selection) {
 		Display.resetSelection();
 		
-		if (fullDraw)
+		if (fullDraw) {
+			Display.cursorPosition(row, 1);
 			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, type.color, col);
+		}
 		
 		Display.printRightAlignedString(type.displayName, row, col+36, type.color, Color.BLACK, selection);
 		Display.printLeftAlignedString(name, row+1, col+1, Color.BLACK, type.color, selection);
