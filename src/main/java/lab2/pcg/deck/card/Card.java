@@ -22,7 +22,8 @@ public abstract class Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	public abstract void displayCard(int row, int col, boolean fullDraw, int selection);
-	public abstract int getNumberOfSelectables();
+	public abstract int getNumberOfFields();
+	public abstract void fillField(int selection);
 	
 	protected void printExpansion(int row, int col, Color bgColor, int selection) {
 		Display.printRightAlignedString(cardNumber + "/" + expansionSymbol, row+25, col+36, Color.BLACK, bgColor, selection);

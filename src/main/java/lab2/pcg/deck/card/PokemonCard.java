@@ -33,8 +33,13 @@ public class PokemonCard extends Card {
 	}
 	
 	@Override
-	public int getNumberOfSelectables() {
+	public int getNumberOfFields() {
 		return 6;
+	}
+	
+	@Override
+	public void fillField(int selection) {
+	
 	}
 	
 }

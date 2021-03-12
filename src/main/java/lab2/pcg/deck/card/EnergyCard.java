@@ -28,8 +28,13 @@ public class EnergyCard extends Card {
 	}
 	
 	@Override
-	public int getNumberOfSelectables() {
+	public int getNumberOfFields() {
 		return 4;
+	}
+	
+	@Override
+	public void fillField(int selection) {
+	
 	}
 
 }
