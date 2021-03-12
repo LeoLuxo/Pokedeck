@@ -4,6 +4,7 @@ import lab2.pcg.Display;
 import lab2.pcg.Util;
 import lab2.pcg.deck.enums.EnergyType;
 import lab2.pcg.deck.enums.Expansion;
+import lab2.pcg.deck.enums.PokemonStage;
 
 import java.awt.*;
 
@@ -11,7 +12,7 @@ import java.awt.*;
 public class PokemonCard extends Card {
 	
 	public int hp = 0;
-	public int stage = 0;
+	public PokemonStage stage = PokemonStage.BASIC;
 	public String evolvesFrom = "";
 	public EnergyType type = EnergyType.NONE;
 	
