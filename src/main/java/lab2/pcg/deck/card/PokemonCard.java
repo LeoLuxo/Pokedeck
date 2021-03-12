@@ -14,7 +14,7 @@ public class PokemonCard extends Card {
 	public int hp = 0;
 	public PokemonStage stage = PokemonStage.BASIC;
 	public String evolvesFrom = "";
-	public EnergyType type = EnergyType.NONE;
+	public EnergyType type = EnergyType.COLORLESS;
 	
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	

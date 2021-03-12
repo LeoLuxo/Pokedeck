@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class TrainerCard extends Card {
 	
-	public TrainerType type = TrainerType.NONE;
+	public TrainerType type = TrainerType.ITEM;
 	
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	

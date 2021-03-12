@@ -2,7 +2,6 @@ package lab2.pcg.deck.enums;
 
 public enum TrainerType {
 	
-	NONE(""),
 	ITEM("Item"),
 	STADIUM("Stadium"),
 	POKEMON_TOOL("Pokémon Tool"),

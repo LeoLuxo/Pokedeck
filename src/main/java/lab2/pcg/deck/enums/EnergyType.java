@@ -5,7 +5,6 @@ import java.awt.*;
 
 public enum EnergyType {
 	
-	NONE("", Color.decode("#D4DBDF")),
 	COLORLESS("Colorless", Color.decode("#D4DBDF")),
 	GRASS("Grass", Color.decode("#299A49")),
 	FIRE("Fire", Color.decode("#ED3E30")),
