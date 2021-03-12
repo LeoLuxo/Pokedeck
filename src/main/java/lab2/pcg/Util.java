@@ -51,7 +51,7 @@ public class Util {
 	
 	
 	public static int requestMultiChoiceInput(String[] options, int row, int col) {
-		String query = "Select one option:";
+		String query = "Select option:";
 		
 		int maxLength = query.length() - 4;
 		for (String s : options) {
