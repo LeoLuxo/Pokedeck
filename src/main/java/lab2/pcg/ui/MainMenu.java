@@ -63,7 +63,7 @@ public class MainMenu {
 			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol, true);
 			
 			if (result == 0) {
-				Card card = CardCreator.designCard();
+				Card card = CardCreator.designNewCard();
 				if (card != null) {
 					loadedDeck.addCard(card);
 					PokedeckManager.saveDeck(loadedDeck);

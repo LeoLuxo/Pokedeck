@@ -21,7 +21,7 @@ public class CardCreator {
 	private static final int cardRow = 2;
 	private static final int cardCol = 3;
 	
-	public static Card designCard() {
+	public static Card designNewCard() {
 		drawTitle();
 		Display.printSimpleString("What type of card do you want to create?", creatorRow+2, creatorCol, Color.WHITE, Color.BLACK, true);
 		int result = Util.requestMultiChoiceInput(new String[] {"Pokémon Card", "Trainer Card", "Energy Card"}, creatorRow+4, creatorCol, true);
@@ -36,6 +36,12 @@ public class CardCreator {
 			card = new EnergyCard();
 		}
 		
+		boolean addAccepted = updateCard(card);
+		return addAccepted ? card : null;
+	}
+	
+	// card is modfied in place
+	public static boolean updateCard(Card card) {
 		int selection = 0;
 		
 		while (true) {
@@ -47,9 +53,9 @@ public class CardCreator {
 				int input = Util.requestChoiceBase();
 				if (input == 0) {
 					if (selection == card.getNumberOfFields()) {
-						return card;
+						return false;
 					} else if (selection == card.getNumberOfFields() + 1) {
-						return null;
+						return true;
 					} else {
 						Display.setColor(Color.WHITE, Color.BLACK);
 						card.fillField(selection, creatorRow + 2, creatorCol);
