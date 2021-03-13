@@ -21,10 +21,10 @@ public class CardCreator {
 	private static final int cardRow = 2;
 	private static final int cardCol = 3;
 	
-	public static void designCard() {
+	public static Card designCard() {
 		drawTitle();
 		Display.printSimpleString("What type of card do you want to create?", creatorRow+2, creatorCol, Color.WHITE, Color.BLACK, true);
-		int result = Util.requestMultiChoiceInput(new String[] {"Pokémon Card", "Trainer Card", "Energy Card"}, creatorRow+4, creatorCol);
+		int result = Util.requestMultiChoiceInput(new String[] {"Pokémon Card", "Trainer Card", "Energy Card"}, creatorRow+4, creatorCol, true);
 		
 		Card card;
 
@@ -36,12 +36,33 @@ public class CardCreator {
 			card = new EnergyCard();
 		}
 		
-		drawTitle();
-		Display.printSimpleString("SAVE", cardRow+26, cardCol+40, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR, false);
-		Display.printSimpleString("CANCEL", cardRow+26, cardCol+50);
-		card.displayCard(cardRow, cardCol, true, -1);
+		int selection = 0;
 		
-		Util.requestSingleChar();
+		while (true) {
+			drawTitle();
+			card.displayCard(cardRow, cardCol, true, selection);
+			drawSaveCancel(selection - card.getNumberOfFields());
+			
+			while (true) {
+				int input = Util.requestChoiceBase();
+				if (input == 0) {
+					if (selection == card.getNumberOfFields()) {
+						return card;
+					} else if (selection == card.getNumberOfFields() + 1) {
+						return null;
+					} else {
+						Display.setColor(Color.WHITE, Color.BLACK);
+						card.fillField(selection, creatorRow + 2, creatorCol);
+						break;
+					}
+				} else {
+					selection = Math.max(Math.min(selection + input, card.getNumberOfFields()+1), 0);
+				}
+				
+				card.displayCard(cardRow, cardCol, false, selection);
+				drawSaveCancel(selection - card.getNumberOfFields());
+			}
+		}
 	}
 	
 	private static void drawTitle() {
@@ -49,6 +70,18 @@ public class CardCreator {
 		Display.setUnderlineOn();
 		Display.printSimpleString("Card Creator", creatorRow, creatorCol, new Color(0, 128, 255), Color.BLACK, false);
 		Display.setUnderlineOff();
+	}
+	
+	private static void drawSaveCancel(int selection) {
+		if (selection == 0)
+			Display.printSimpleString(">SAVE<", cardRow+26, cardCol+40, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR.darker(), false);
+		else
+			Display.printSimpleString(" SAVE ", cardRow+26, cardCol+40, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR, false);
+		
+		if (selection == 1)
+			Display.printSimpleString(">CANCEL<", cardRow+26, cardCol+50, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR.darker(), false);
+		else
+			Display.printSimpleString(" CANCEL ", cardRow+26, cardCol+50, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR, false);
 	}
 	
 }

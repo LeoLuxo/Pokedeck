@@ -5,6 +5,7 @@ import lab2.pcg.Display;
 import lab2.pcg.PokedeckManager;
 import lab2.pcg.Util;
 import lab2.pcg.deck.CardDeck;
+import lab2.pcg.deck.card.Card;
 
 import java.awt.*;
 
@@ -23,7 +24,7 @@ public class MainMenu {
 			drawMenu();
 			// Ask user for name
 			Display.printSimpleString("Welcome trainer! What deck do you wish to load?", menuRow, menuCol);
-			String name = Util.requestString(1, 16, menuRow+2, menuCol).strip().replaceAll("\\W+", "_");
+			String name = Util.requestString(1, 16, menuRow+2, menuCol, true).strip().replaceAll("\\W+", "_");
 			
 			// Call deckExists method from PokedeckManager class to see if it exists.
 			// It doesn't exit- call method to ask to create one
@@ -43,7 +44,7 @@ public class MainMenu {
 	public static boolean askNewDeck(String name) {
 		drawMenu();
 		Display.printSimpleString("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"?", menuRow, menuCol);
-		int answer = Util.requestMultiChoiceInput(new String[]{"YES", "NO"}, menuRow+2, menuCol);
+		int answer = Util.requestMultiChoiceInput(new String[]{"YES", "NO"}, menuRow+2, menuCol, true);
 		
 		if (answer == 0) {
 			PokedeckManager.createDeck(name);
@@ -59,10 +60,14 @@ public class MainMenu {
 			Display.printSimpleString("Currently loaded deck: " + loadedDeck.name, menuRow, menuCol);
 			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol);
 			
-			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol);
+			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol, true);
 			
 			if (result == 0) {
-				CardCreator.designCard();
+				Card card = CardCreator.designCard();
+				if (card != null) {
+					loadedDeck.addCard(card);
+					PokedeckManager.saveDeck(loadedDeck);
+				}
 			} else if (result == 1) {
 			
 			} else {

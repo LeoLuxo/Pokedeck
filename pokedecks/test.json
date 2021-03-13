@@ -3,78 +3,12 @@
     {
       "type": "PokemonCard",
       "card": {
-        "hp": 160,
-        "stage": 2,
-        "evolvesFrom": "Wartortle",
-        "type": "WATER",
-        "name": "Blastoise",
-        "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
-        "cardNumber": 25,
-        "expansionSymbol": "TEU"
-      }
-    },
-    {
-      "type": "TrainerCard",
-      "card": {
-        "type": "ITEM",
-        "name": "Great Ball",
-        "description": "Look at the top 7 cards of your deck. You may reveal a Pokémon you find there and put it into your hand. Shuffle the other cards back into your deck.",
-        "cardNumber": 164,
-        "expansionSymbol": "SSH"
-      }
-    },
-    {
-      "type": "EnergyCard",
-      "card": {
-        "type": "FIRE",
-        "name": "Fire Energy",
-        "description": "It burns lol",
-        "cardNumber": 420,
-        "expansionSymbol": "BS"
-      }
-    },
-    {
-      "type": "PokemonCard",
-      "card": {
-        "hp": 70,
-        "stage": 0,
-        "evolvesFrom": "",
+        "hp": 600,
+        "stage": "EX",
+        "evolvesFrom": "Pichu",
         "type": "LIGHTNING",
         "name": "Pikachu",
-        "description": "Its nature is to store up electricity. Forests where nests of Pikachu live are dangerous, since the trees are so often struck by lightning.",
-        "cardNumber": 241,
-        "expansionSymbol": "CEC"
-      }
-    },
-    {
-      "type": "PokemonCard",
-      "card": {
-        "hp": 160,
-        "stage": 2,
-        "evolvesFrom": "Wartortle",
-        "type": "WATER",
-        "name": "Blastoise",
-        "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
-        "cardNumber": 25,
-        "expansionSymbol": "TEU"
-      }
-    },
-    {
-      "type": "TrainerCard",
-      "card": {
-        "type": "ITEM",
-        "name": "Great Ball",
-        "description": "Look at the top 7 cards of your deck. You may reveal a Pokémon you find there and put it into your hand. Shuffle the other cards back into your deck.",
-        "cardNumber": 164,
-        "expansionSymbol": "SSH"
-      }
-    },
-    {
-      "type": "EnergyCard",
-      "card": {
-        "type": "FIRE",
-        "name": "Fire Energy",
-        "description": "It burns lol",
+        "description": "Cute",
         "cardNumber": 420,
         "expansionSymbol": "BS"
       }
@@ -82,126 +16,73 @@
     {
       "type": "PokemonCard",
       "card": {
-        "hp": 70,
-        "stage": 0,
-        "evolvesFrom": "",
+        "hp": 420,
+        "stage": "LEGEND",
+        "evolvesFrom": "Meme",
         "type": "LIGHTNING",
-        "name": "Pikachu",
-        "description": "Its nature is to store up electricity. Forests where nests of Pikachu live are dangerous, since the trees are so often struck by lightning.",
-        "cardNumber": 241,
-        "expansionSymbol": "CEC"
+        "name": "Surprised Pikachu",
+        "description": "Very good meme kthxbye",
+        "cardNumber": 999,
+        "expansionSymbol": "POO"
       }
     },
     {
       "type": "PokemonCard",
       "card": {
-        "hp": 160,
-        "stage": 2,
-        "evolvesFrom": "Wartortle",
-        "type": "WATER",
-        "name": "Blastoise",
-        "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
-        "cardNumber": 25,
-        "expansionSymbol": "TEU"
-      }
-    },
-    {
-      "type": "TrainerCard",
-      "card": {
-        "type": "ITEM",
-        "name": "Great Ball",
-        "description": "Look at the top 7 cards of your deck. You may reveal a Pokémon you find there and put it into your hand. Shuffle the other cards back into your deck.",
-        "cardNumber": 164,
-        "expansionSymbol": "SSH"
-      }
-    },
-    {
-      "type": "EnergyCard",
-      "card": {
-        "type": "FIRE",
-        "name": "Fire Energy",
-        "description": "It burns lol",
-        "cardNumber": 420,
-        "expansionSymbol": "BS"
-      }
-    },
-    {
-      "type": "PokemonCard",
-      "card": {
-        "hp": 70,
-        "stage": 0,
+        "hp": 30,
+        "stage": "BASIC",
         "evolvesFrom": "",
-        "type": "LIGHTNING",
-        "name": "Pikachu",
-        "description": "Its nature is to store up electricity. Forests where nests of Pikachu live are dangerous, since the trees are so often struck by lightning.",
-        "cardNumber": 241,
-        "expansionSymbol": "CEC"
-      }
-    },
-    {
-      "type": "PokemonCard",
-      "card": {
-        "hp": 160,
-        "stage": 2,
-        "evolvesFrom": "Wartortle",
         "type": "WATER",
-        "name": "Blastoise",
-        "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
-        "cardNumber": 25,
-        "expansionSymbol": "TEU"
-      }
-    },
-    {
-      "type": "TrainerCard",
-      "card": {
-        "type": "ITEM",
-        "name": "Great Ball",
-        "description": "Look at the top 7 cards of your deck. You may reveal a Pokémon you find there and put it into your hand. Shuffle the other cards back into your deck.",
-        "cardNumber": 164,
-        "expansionSymbol": "SSH"
-      }
-    },
-    {
-      "type": "EnergyCard",
-      "card": {
-        "type": "FIRE",
-        "name": "Fire Energy",
-        "description": "It burns lol",
-        "cardNumber": 420,
+        "name": "Magikarp",
+        "description": "Can use fly",
+        "cardNumber": 123,
         "expansionSymbol": "BS"
       }
     },
     {
       "type": "PokemonCard",
       "card": {
-        "hp": 160,
-        "stage": 2,
-        "evolvesFrom": "Wartortle",
+        "hp": 30,
+        "stage": "STAGE_1",
+        "evolvesFrom": "Water",
         "type": "WATER",
-        "name": "Blastoise",
-        "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
-        "cardNumber": 25,
-        "expansionSymbol": "TEU"
+        "name": "Magicarp",
+        "description": "asd",
+        "cardNumber": 333,
+        "expansionSymbol": "wer"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 0,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "COLORLESS",
+        "name": "",
+        "description": "asdasd\nads",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
       }
     },
     {
       "type": "TrainerCard",
       "card": {
-        "type": "ITEM",
-        "name": "Great Ball",
-        "description": "Look at the top 7 cards of your deck. You may reveal a Pokémon you find there and put it into your hand. Shuffle the other cards back into your deck.",
-        "cardNumber": 164,
-        "expansionSymbol": "SSH"
+        "type": "ROCKET_SECRET_MACHINE",
+        "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "cardNumber": 123,
+        "expansionSymbol": "aaa"
       }
     },
     {
       "type": "EnergyCard",
       "card": {
-        "type": "FIRE",
-        "name": "Fire Energy",
-        "description": "It burns lol",
-        "cardNumber": 420,
-        "expansionSymbol": "BS"
+        "type": "GRASS",
+        "name": "asddddddddddddddddddddddddd",
+        "description": "asdasdasdasdasdasdadsadadadadaadaa\nadad\nadada\nadaad\nadaadadadaadadadadadaaadadaadadada",
+        "cardNumber": 456,
+        "expansionSymbol": "ASD"
       }
     }
   ]

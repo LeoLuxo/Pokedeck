@@ -26,17 +26,35 @@ public class TrainerCard extends Card {
 		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR, selection);
 		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR, selection);
 		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34, selection);
-		printExpansion(row, col, SECONDARY_COLOR, selection);
+		Display.printRightAlignedString(cardNumber + "/", row+25, col+36-expansionSymbol.length(), Color.BLACK, MAIN_COLOR, selection);
+		Display.printRightAlignedString(expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR, selection);
 	}
 	
 	@Override
 	public int getNumberOfFields() {
-		return 4;
+		return 5;
 	}
 	
 	@Override
-	public void fillField(int selection) {
-	
+	public void fillField(int selection, int row, int col) {
+		switch (selection) {
+			case 0:
+				Display.printSimpleString("The Trainer card's type.", row, col);
+				type = Util.requestTrainerTypeInput(row+1, col, true);
+				break;
+			case 1:
+				fillName(row, col);
+				break;
+			case 2:
+				fillDescription(12, 34, row, col);
+				break;
+			case 3:
+				fillCardNumber(row, col);
+				break;
+			case 4:
+				fillExpansionSymbol(row, col);
+				break;
+		}
 	}
 
 }

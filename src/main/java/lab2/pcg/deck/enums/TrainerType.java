@@ -1,5 +1,8 @@
 package lab2.pcg.deck.enums;
 
+import java.util.Arrays;
+
+
 public enum TrainerType {
 	
 	ITEM("Item"),
@@ -16,5 +19,4 @@ public enum TrainerType {
 	TrainerType(String displayName) {
 		this.displayName = displayName;
 	}
-	
 }

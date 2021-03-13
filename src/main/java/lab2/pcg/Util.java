@@ -1,14 +1,12 @@
 package lab2.pcg;
 
-import lab2.pcg.deck.enums.EnergyType;
-import lab2.pcg.deck.enums.Expansion;
-import lab2.pcg.deck.enums.TrainerType;
+import lab2.pcg.deck.enums.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.function.Function;
+import java.util.Arrays;
 
 
 public class Util {
@@ -20,8 +18,7 @@ public class Util {
 	
 	
 	
-	public static String requestString(int minLength, int maxLength, int row, int col) {
-		String charWhitelist = " _-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	public static String requestStringBase(String charWhitelist, int minLength, int maxLength, int row, int col, boolean erase) {
 		StringBuilder currentInput = new StringBuilder();
 		
 		while (true) {
@@ -44,8 +41,18 @@ public class Util {
 			}
 		}
 		
-		Display.eraseZone(row, col, 1, maxLength+3);
+		if (erase)
+			Display.eraseZone(row, col, 1, maxLength+3);
+		
 		return currentInput.toString();
+	}
+	
+	public static String requestString(int minLength, int maxLength, int row, int col, boolean erase) {
+		return requestStringBase(" _-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", minLength, maxLength, row, col, erase);
+	}
+	
+	public static String requestDigitString(int minLength, int maxLength, int row, int col, boolean erase) {
+		return requestStringBase("0123456789", minLength, maxLength, row, col, erase);
 	}
 	
 	
@@ -69,7 +76,7 @@ public class Util {
 		}
 	}
 	
-	public static int requestMultiChoiceInput(String[] options, int row, int col) {
+	public static int requestMultiChoiceInput(String[] options, int row, int col, boolean erase) {
 		String query = "Select option:";
 		
 		int maxLength = query.length() - 4;
@@ -104,8 +111,23 @@ public class Util {
 			selected = Math.max(Math.min(selected + input, options.length - 1), 0);
 		}
 		
-		Display.eraseZone(row, col, options.length+1, maxLength+4);
+		if (erase)
+			Display.eraseZone(row, col, options.length+1, maxLength+4);
+		
 		return selected;
+	}
+	
+	// Tried generalizing this for any enum, very bad idea
+	public static EnergyType requestEnergyTypeInput(int row, int col, boolean erase) {
+		return EnergyType.values()[requestMultiChoiceInput(Arrays.stream(EnergyType.values()).map(e -> e.displayName).toArray(String[]::new), row, col, erase)];
+	}
+	
+	public static PokemonStage requestPokemonStageInput(int row, int col, boolean erase) {
+		return PokemonStage.values()[requestMultiChoiceInput(Arrays.stream(PokemonStage.values()).map(e -> e.displayName).toArray(String[]::new), row, col, erase)];
+	}
+	
+	public static TrainerType requestTrainerTypeInput(int row, int col, boolean erase) {
+		return TrainerType.values()[requestMultiChoiceInput(Arrays.stream(TrainerType.values()).map(e -> e.displayName).toArray(String[]::new), row, col, erase)];
 	}
 	
 	

@@ -22,8 +22,8 @@ public class Display {
 		
 		try {
 			// Puts the unix terminal in "raw mode", where keyboard inputs are not buffered nor checked by the system. This means we can use the arrow keys or other keys
-			// Doing this however is VERY. DANGEROUS. If CTRL-C input is not checked on it will completely softlock the terminal/unix system inside the java program
-			Runtime.getRuntime().exec(new String[] {"/bin/sh", "-c", "stty raw </dev/tty"}).waitFor();
+			// Doing this however is VERY. DANGEROUS. If CTRL-C input is not checked on, it will completely softlock the terminal/unix system inside the java program
+			Runtime.getRuntime().exec(new String[] {"/bin/sh", "-c", "stty raw -echo </dev/tty"}).waitFor();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,13 +154,14 @@ public class Display {
 		checkSelection(fgColor, bgColor, selection);
 		cursorPosition(row, col);
 		
-		System.out.print(string);
+		System.out.print(checkEmtpy(string));
 		System.out.flush();
 		
 		resetStyle();
 	}
 	
 	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection) {
+		string = checkEmtpy(string);
 		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor, selection);
 	}
 	
@@ -168,13 +169,16 @@ public class Display {
 		checkSelection(fgColor, bgColor, selection);
 		cursorPosition(row, col);
 		
-		char[] chars = string.toCharArray();
+		string = checkEmtpy(string);
+		char[] chars = string.replaceAll("\r\n", "\n").toCharArray();
 		int rowOffset = 0;
 		
 		for (int i = 0; i < chars.length; i++) {
-			System.out.print(chars[i]);
+			if (i % maxCol < maxCol) {
+				System.out.print(chars[i]);
+			}
 			
-			if (i % maxCol == maxCol-1) {
+			if (chars[i] == '\n') {
 				cursorPosition(row, col);
 				rowOffset += 1;
 				cursorDown(rowOffset);
@@ -203,6 +207,13 @@ public class Display {
 		}
 		
 		setColor(fgColor, bgColor);
+	}
+	
+	private static String checkEmtpy(String string) {
+		if (string.equals(""))
+			return ".....";
+		else
+			return string;
 	}
 	
 	
