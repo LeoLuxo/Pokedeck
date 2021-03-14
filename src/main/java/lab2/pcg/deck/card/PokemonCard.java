@@ -75,4 +75,9 @@ public class PokemonCard extends Card {
 		}
 	}
 	
+	@Override
+	public Color getSearchBackground() {
+		return type.color;
+	}
+	
 }

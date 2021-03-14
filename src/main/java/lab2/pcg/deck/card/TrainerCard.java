@@ -56,5 +56,10 @@ public class TrainerCard extends Card {
 				break;
 		}
 	}
+	
+	@Override
+	public Color getSearchBackground() {
+		return MAIN_COLOR;
+	}
 
 }

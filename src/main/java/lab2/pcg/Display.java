@@ -209,10 +209,7 @@ public class Display {
 	}
 	
 	private static String checkEmtpy(String string) {
-		if (string.equals(""))
-			return ".....";
-		else
-			return string;
+		return string.isBlank() ? "....." : string;
 	}
 	
 	

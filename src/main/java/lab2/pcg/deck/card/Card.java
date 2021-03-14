@@ -27,6 +27,8 @@ public abstract class Card {
 	public abstract int getNumberOfFields();
 	public abstract void fillField(int selection, int row, int col);
 	
+	public abstract Color getSearchBackground();
+	
 	
 	
 	protected void fillName(int row, int col) {

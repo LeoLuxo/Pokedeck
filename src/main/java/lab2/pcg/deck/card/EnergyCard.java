@@ -56,5 +56,10 @@ public class EnergyCard extends Card {
 				break;
 		}
 	}
+	
+	@Override
+	public Color getSearchBackground() {
+		return type.color;
+	}
 
 }

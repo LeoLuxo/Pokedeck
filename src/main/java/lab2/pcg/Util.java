@@ -163,4 +163,10 @@ public class Util {
 		}
 	}
 	
+	
+	
+	public static String delimitString(String s, int maxChars) {
+		return String.format("%-"+maxChars+"s", s.substring(0, Math.min(maxChars, s.length())));
+	}
+	
 }
