@@ -63,17 +63,25 @@ public class MainMenu {
 			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol, true);
 			
 			if (result == 0) {
-				Card card = CardCreator.designNewCard();
-				if (card != null) {
-					loadedDeck.addCard(card);
-					PokedeckManager.saveDeck(loadedDeck);
-				}
+				addCardMenu();
 			} else if (result == 1) {
-			
+				searchMenu();
 			} else {
 				return;
 			}
 		}
+	}
+	
+	public static void addCardMenu() {
+		Card card = CardCreator.designNewCard();
+		if (card != null) {
+			loadedDeck.addCard(card);
+			PokedeckManager.saveDeck(loadedDeck);
+		}
+	}
+	
+	public static void searchMenu() {
+		Search.mainSearchMenu(loadedDeck);
 	}
 	
 	

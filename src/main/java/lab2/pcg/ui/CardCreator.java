@@ -1,14 +1,11 @@
 package lab2.pcg.ui;
 
 import lab2.pcg.Display;
-import lab2.pcg.Pokedeck;
-import lab2.pcg.PokedeckManager;
 import lab2.pcg.Util;
 import lab2.pcg.deck.card.Card;
 import lab2.pcg.deck.card.EnergyCard;
 import lab2.pcg.deck.card.PokemonCard;
 import lab2.pcg.deck.card.TrainerCard;
-import lab2.pcg.deck.enums.EnergyType;
 
 import java.awt.*;
 

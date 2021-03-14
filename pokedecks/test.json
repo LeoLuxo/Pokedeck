@@ -84,6 +84,29 @@
         "cardNumber": 456,
         "expansionSymbol": "ASD"
       }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "ITEM",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 0,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "COLORLESS",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
     }
   ]
 }

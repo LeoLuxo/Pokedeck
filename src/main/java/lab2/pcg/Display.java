@@ -169,8 +169,7 @@ public class Display {
 		checkSelection(fgColor, bgColor, selection);
 		cursorPosition(row, col);
 		
-		string = checkEmtpy(string);
-		char[] chars = string.replaceAll("\r\n", "\n").toCharArray();
+		char[] chars = checkEmtpy(string).replaceAll("\r\n", "\n").toCharArray();
 		int rowOffset = 0;
 		
 		for (int i = 0; i < chars.length; i++) {

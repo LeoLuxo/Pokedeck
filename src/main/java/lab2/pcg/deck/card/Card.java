@@ -23,8 +23,13 @@ public abstract class Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	public abstract void displayCard(int row, int col, boolean fullDraw, int selection);
+	
+	public abstract void getTypePrefix(int selection, int row, int col);
+	
 	public abstract int getNumberOfFields();
 	public abstract void fillField(int selection, int row, int col);
+	
+	
 	
 	protected void fillName(int row, int col) {
 		Display.printSimpleString("The card's name.", row, col);

@@ -31,39 +31,45 @@ public class CardDeck {
 		cards.add(index, card);
 	}
 	
-	public List<Card> filterCards(Predicate<Card> filter, Comparator<Card> sorter) {
+	public <T extends Card> List<T> filterCards(Class<T> cardType, Predicate<T> filter, Comparator<T> sorter) {
 		return cards.stream()
+				.filter(cardType::isInstance)
+				.map(cardType::cast)
 				.filter(filter)
+				.sorted(Comparator.comparing(c -> c.name))
 				.sorted(sorter)
 				.collect(Collectors.toList());
 	}
 	
-	// Trying to merge the methods for the three card types using reflection and Class<? extends Card> just for the sake
-	// of avoiding code repetition would have been horribly redudant and made these methods wayyy more complicated.
-	public List<Card> filterPokemonCards(Predicate<PokemonCard> filter, Comparator<PokemonCard> sorter) {
-		return cards.stream()
-				.filter(card -> card instanceof PokemonCard)
-				.map(card -> (PokemonCard) card)
-				.filter(filter)
-				.sorted(sorter)
-				.collect(Collectors.toList());
-	}
-	
-	public List<Card> filterTrainerCards(Predicate<TrainerCard> filter, Comparator<TrainerCard> sorter) {
-		return cards.stream()
-				.filter(card -> card instanceof TrainerCard)
-				.map(card -> (TrainerCard) card)
-				.filter(filter)
-				.sorted(sorter)
-				.collect(Collectors.toList());
-	}
-	
-	public List<Card> filterEnergyCards(Predicate<EnergyCard> filter, Comparator<EnergyCard> sorter) {
-		return cards.stream()
-				.filter(card -> card instanceof EnergyCard)
-				.map(card -> (EnergyCard) card)
-				.filter(filter)
-				.sorted(sorter)
-				.collect(Collectors.toList());
-	}
+//	// Trying to merge the methods for the three card types using reflection and Class<? extends Card> just for the sake
+//	// of avoiding code repetition would have been horribly redudant and made these methods wayyy more complicated.
+//	public List<Card> filterPokemonCards(Predicate<PokemonCard> filter, Comparator<PokemonCard> sorter) {
+//		return cards.stream()
+//				.filter(card -> card instanceof PokemonCard)
+//				.map(card -> (PokemonCard) card)
+//				.filter(filter)
+//				.sorted(Comparator.comparing(c -> c.name))
+//				.sorted(sorter)
+//				.collect(Collectors.toList());
+//	}
+//
+//	public List<Card> filterTrainerCards(Predicate<TrainerCard> filter, Comparator<TrainerCard> sorter) {
+//		return cards.stream()
+//				.filter(card -> card instanceof TrainerCard)
+//				.map(card -> (TrainerCard) card)
+//				.filter(filter)
+//				.sorted(Comparator.comparing(c -> c.name))
+//				.sorted(sorter)
+//				.collect(Collectors.toList());
+//	}
+//
+//	public List<Card> filterEnergyCards(Predicate<EnergyCard> filter, Comparator<EnergyCard> sorter) {
+//		return cards.stream()
+//				.filter(card -> card instanceof EnergyCard)
+//				.map(card -> (EnergyCard) card)
+//				.filter(filter)
+//				.sorted(Comparator.comparing(c -> c.name))
+//				.sorted(sorter)
+//				.collect(Collectors.toList());
+//	}
 }
