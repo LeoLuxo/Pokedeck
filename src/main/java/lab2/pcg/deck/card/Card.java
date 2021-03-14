@@ -2,7 +2,6 @@ package lab2.pcg.deck.card;
 
 import lab2.pcg.Display;
 import lab2.pcg.Util;
-import lab2.pcg.deck.enums.Expansion;
 
 import java.awt.*;
 

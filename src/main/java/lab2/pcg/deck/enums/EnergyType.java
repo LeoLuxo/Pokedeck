@@ -1,7 +1,6 @@
 package lab2.pcg.deck.enums;
 
 import java.awt.*;
-import java.util.Arrays;
 
 
 public enum EnergyType {

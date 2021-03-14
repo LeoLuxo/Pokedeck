@@ -1,9 +1,6 @@
 package lab2.pcg.deck.enums;
 
 
-import java.util.Arrays;
-
-
 public enum PokemonStage {
 
 	BASIC("Basic"),
