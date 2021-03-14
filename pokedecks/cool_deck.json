@@ -3,19 +3,6 @@
     {
       "type": "PokemonCard",
       "card": {
-        "hp": 60,
-        "stage": "BASIC",
-        "evolvesFrom": "",
-        "type": "COLORLESS",
-        "name": "Eevee",
-        "description": "It has the ability to alter the\ncomposition of its body to suit\nits surrounding environment.",
-        "cardNumber": 52,
-        "expansionSymbol": "SF"
-      }
-    },
-    {
-      "type": "PokemonCard",
-      "card": {
         "hp": 190,
         "stage": "V",
         "evolvesFrom": "",
@@ -185,11 +172,47 @@
     {
       "type": "EnergyCard",
       "card": {
-        "type": "SPECIAL",
+        "type": "FIRE",
         "name": "Twin Energy",
         "description": "",
         "cardNumber": 174,
         "expansionSymbol": "RCL"
+      }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "ITEM",
+        "name": "Great Ball",
+        "description": "Throw a ball to capture a pokemon",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 123,
+        "stage": "MEGA",
+        "evolvesFrom": "",
+        "type": "FIRE",
+        "name": "Glruak",
+        "description": "Fire type",
+        "cardNumber": 56,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 140,
+        "stage": "STAGE_2",
+        "evolvesFrom": "Wartortle",
+        "type": "WATER",
+        "name": "Blastoise",
+        "description": "",
+        "cardNumber": 42,
+        "expansionSymbol": "BS"
       }
     }
   ]
