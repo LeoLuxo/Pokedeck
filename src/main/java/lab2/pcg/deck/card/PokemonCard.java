@@ -9,23 +9,23 @@ import java.awt.*;
 
 
 public class PokemonCard extends Card {
-	
+
 	public int hp = 0;
 	public PokemonStage stage = PokemonStage.BASIC;
 	public String evolvesFrom = "";
 	public EnergyType type = EnergyType.COLORLESS;
-	
+
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
-	
+
 	@Override
 	public void displayCard(int row, int col, boolean fullDraw, int selection, boolean checkEmpty) {
 		Display.resetSelection();
-		
+
 		if (fullDraw) {
 			Display.cursorPosition(row, 1);
 			Display.printColorDesign(Util.readDesignString("pokemon_card"), MAIN_COLOR, SECONDARY_COLOR, type.color, col);
 		}
-		
+
 		Display.printRightAlignedString(type.displayName, row, col+36, type.color, Color.BLACK, selection, checkEmpty);
 		Display.printLeftAlignedString(name, row+1, col+1, Color.BLACK, type.color, selection, checkEmpty);
 		Display.printRightAlignedString("HP " + hp, row+1, col+36, Color.BLACK, type.color, selection, checkEmpty);
@@ -35,12 +35,12 @@ public class PokemonCard extends Card {
 		Display.printRightAlignedString(cardNumber + "/", row+25, col+36-expansionSymbol.length(), Color.BLACK, MAIN_COLOR, selection, checkEmpty);
 		Display.printRightAlignedString(expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR, selection, checkEmpty);
 	}
-	
+
 	@Override
 	public int getNumberOfFields() {
 		return 8;
 	}
-	
+
 	@Override
 	public void fillField(int selection, int row, int col) {
 		switch (selection) {
@@ -74,10 +74,10 @@ public class PokemonCard extends Card {
 				break;
 		}
 	}
-	
+
 	@Override
 	public Color getSearchBackground() {
 		return type.color;
 	}
-	
+
 }

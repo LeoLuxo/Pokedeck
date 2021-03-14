@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 
 public enum EnergyType {
-	
+
 	COLORLESS("Colorless", Color.decode("#D4DBDF")),
 	GRASS("Grass", Color.decode("#299A49")),
 	FIRE("Fire", Color.decode("#ED3E30")),
@@ -19,13 +19,13 @@ public enum EnergyType {
 	FAIRY("Fairy", Color.decode("#DA4586")),
 	RAINBOW("Rainbow", Color.decode("#EFDCA3")),
 	SPECIAL("Other/Special", Color.decode("#D4DBDF"));
-	
+
 	public final String displayName;
 	public final Color color;
-	
+
 	EnergyType(String displayName, Color color) {
 		this.displayName = displayName;
 		this.color = color;
 	}
-	
+
 }
