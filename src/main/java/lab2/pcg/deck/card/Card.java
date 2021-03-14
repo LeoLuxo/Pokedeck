@@ -24,8 +24,6 @@ public abstract class Card {
 	
 	public abstract void displayCard(int row, int col, boolean fullDraw, int selection);
 	
-	public abstract void getTypePrefix(int selection, int row, int col);
-	
 	public abstract int getNumberOfFields();
 	public abstract void fillField(int selection, int row, int col);
 	

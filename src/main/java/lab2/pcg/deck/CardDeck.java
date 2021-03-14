@@ -36,7 +36,7 @@ public class CardDeck {
 				.filter(cardType::isInstance)
 				.map(cardType::cast)
 				.filter(filter)
-				.sorted(Comparator.comparing(c -> c.name))
+				.sorted(Comparator.comparing(c -> c.getClass().getName()))
 				.sorted(sorter)
 				.collect(Collectors.toList());
 	}

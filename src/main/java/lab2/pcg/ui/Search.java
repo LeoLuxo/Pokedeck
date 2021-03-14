@@ -30,6 +30,8 @@ public class Search {
 	public static Comparator<? extends Card> currentSort;
 	public static Predicate<? extends Card> currentSearch;
 	
+	public static List<? extends Card> entries;
+	
 	
 	
 	public static void mainSearchMenu(CardDeck deck) {
@@ -73,32 +75,20 @@ public class Search {
 		drawFancyButton("TRAINER", textRow+3, textCol+16, 3, selectedCardType==2);
 		drawFancyButton("ENERGY", textRow+3, textCol+26, 4, selectedCardType==3);
 		
-		if (selectedCardType == 0) {
-			drawAnyGrid();
-		} else if (selectedCardType == 1) {
-			drawPokemonGrid();
-		} else if (selectedCardType == 2) {
-			drawTrainerGrid();
-		} else if (selectedCardType == 3) {
-			drawEnergyGrid();
-		}
+		drawGrid();
 	}
 	
 	private static void drawEntries(CardDeck deck) {
-		updateFilters();
+		updateEntries(deck);
 		
-		if (selectedCardType == 0) {
-			List<Card> entries = deck.filterCards(Card.class, (Predicate<Card>) currentSearch, (Comparator<Card>) currentSort);
-			drawAnyEntries(entries);
-		} else if (selectedCardType == 1) {
-			List<PokemonCard> entries = deck.filterCards(PokemonCard.class, (Predicate<PokemonCard>) currentSearch, (Comparator<PokemonCard>) currentSort);
-			drawPokemonEntries(entries);
-		} else if (selectedCardType == 2) {
-			List<TrainerCard> entries = deck.filterCards(TrainerCard.class, (Predicate<TrainerCard>) currentSearch, (Comparator<TrainerCard>) currentSort);
-			drawTrainerEntries(entries);
-		} else if (selectedCardType == 3) {
-			List<EnergyCard> entries = deck.filterCards(EnergyCard.class, (Predicate<EnergyCard>) currentSearch, (Comparator<EnergyCard>) currentSort);
-			drawEnergyEntries(entries);
+		for (int i = 0; i < Math.min(16, entries.size()); i++) {
+			Card card = entries.get(i);
+			boolean selected = globalSelection == i;
+			drawButton(card.getClass().getName().substring(0, 1), gridRow+3+i, gridCol+1, 14, false);
+			drawButton(card.name.substring(0, Math.min(card.name.length(), 25)), gridRow+3+i, gridCol+3, 14, false);
+			drawButton(card.description.replaceAll("\n+", ";").substring(0, Math.min(card.description.length(), 57)), gridRow+3+i, gridCol+29, 14, false);
+			drawButton(String.valueOf(card.cardNumber), gridRow+3+i, gridCol+87, 14, false);
+			drawButton(card.expansionSymbol.substring(0, Math.min(card.expansionSymbol.length(), 5)), gridRow+3+i, gridCol+93, 14, false);
 		}
 	}
 	
@@ -143,7 +133,7 @@ public class Search {
 	
 	
 	
-	private static void drawAnyGrid() {
+	private static void drawGrid() {
 		drawSortButton(gridRow+1, gridCol+1, 5, 0);
 		drawSortButton(gridRow+1, gridCol+3, 6, 0);
 		drawButton("NAME", gridRow+1, gridCol+5, 7, false);
@@ -155,56 +145,42 @@ public class Search {
 		drawButton("EXP", gridRow+1, gridCol+95, 13, false);
 	}
 	
-	private static void drawPokemonGrid() {
-	
-	}
-	
-	private static void drawTrainerGrid() {
-	
-	}
-	
-	private static void drawEnergyGrid() {
-	
-	}
-	
-	
-	
-	private static void drawAnyEntries(List<Card> entries) {
-		for (int i = 0; i < Math.min(16, entries.size()); i++) {
-			Card card = entries.get(i);
-			drawButton(card.getClass().getName().substring(0, 1), gridRow+3+i, gridCol+1, 14, false);
-			drawButton(card.name.substring(0, Math.min(card.name.length(), 25)), gridRow+3+i, gridCol+3, 14, false);
-			drawButton(card.description.substring(0, Math.min(card.description.length(), 57)), gridRow+3+i, gridCol+29, 14, false);
-			drawButton(String.valueOf(card.cardNumber), gridRow+3+i, gridCol+87, 14, false);
-			drawButton(card.expansionSymbol.substring(0, Math.min(card.expansionSymbol.length(), 5)), gridRow+3+i, gridCol+93, 14, false);
-		}
-	}
-	
-	private static void drawPokemonEntries(List<PokemonCard> entries) {
-	
-	}
-	
-	private static void drawTrainerEntries(List<TrainerCard> entries) {
-	
-	}
-	
-	private static void drawEnergyEntries(List<EnergyCard> entries) {
-	
-	}
-	
 	
 	
 	private static void updateFilters() {
 		switch (Math.abs(selectedSort)) {
 			default:
 			case 1:
-				currentSort = Comparator.comparing(c -> c.getClass().getName());
+				currentSort = Comparator.comparing(c -> c.name);
 				break;
 			case 2:
-			
+				currentSort = Comparator.comparing(c -> c.description);
+				break;
+			case 3:
+				currentSort = Comparator.comparing(c -> c.cardNumber);
+				break;
+			case 4:
+				currentSort = Comparator.comparing(c -> c.expansionSymbol);
+				break;
 		}
 		
-		if (selectedSort < 0)
+		if (selectedSort < 0) {
+			currentSort.reversed();
+		}
+	}
+	
+	private static void updateEntries(CardDeck deck) {
+		updateFilters();
+		
+		if (selectedCardType == 1) {
+			entries = deck.filterCards(PokemonCard.class, (Predicate<PokemonCard>) currentSearch, (Comparator<PokemonCard>) currentSort);
+		} else if (selectedCardType == 2) {
+			entries = deck.filterCards(TrainerCard.class, (Predicate<TrainerCard>) currentSearch, (Comparator<TrainerCard>) currentSort);
+		} else if (selectedCardType == 3) {
+			entries = deck.filterCards(EnergyCard.class, (Predicate<EnergyCard>) currentSearch, (Comparator<EnergyCard>) currentSort);
+		} else {
+			entries = deck.filterCards(Card.class, (Predicate<Card>) currentSearch, (Comparator<Card>) currentSort);
+		}
 	}
 	
 }
