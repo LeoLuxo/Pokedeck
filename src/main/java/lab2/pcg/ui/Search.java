@@ -23,20 +23,29 @@ public class Search {
 	private static final int gridRow = 8;
 	private static final int gridCol = 2;
 	
-	public static int globalSelection = 0;
-	public static int selectedCardType = 0;
-	public static int selectedSort = 0;
-	
-	public static Comparator<? extends Card> currentSort;
-	public static Predicate<? extends Card> currentSearch;
-	
-	public static List<? extends Card> entries;
 	
 	
+	private final CardDeck deck;
 	
-	public static void mainSearchMenu(CardDeck deck) {
-		currentSearch = card -> true;
-		drawMenu(deck);
+	private int globalSelection = 0;
+	private int selectedCardType = 0;
+	private int selectedSort = 0;
+	
+	private Comparator<? extends Card> currentSort = Comparator.comparing(c -> c.getClass().getName());
+	private Predicate<? extends Card> currentSearch = card -> true;
+	
+	private List<? extends Card> entries;
+	
+	
+	
+	public Search(CardDeck deck) {
+		this.deck = deck;
+	}
+	
+	
+	
+	public void mainSearchMenu() {
+		drawMenu();
 		
 		while (true) {
 			int input = Util.requestChoiceBase();
@@ -48,13 +57,13 @@ public class Search {
 			}
 			
 			drawButtons();
-			drawEntries(deck);
+			drawEntries();
 		}
 	}
 	
 	
 	
-	private static void drawMenu(CardDeck deck) {
+	private void drawMenu() {
 		Display.resetStyle();
 		Display.eraseInDisplayFull();
 		
@@ -65,10 +74,10 @@ public class Search {
 		Display.printColorDesign(Util.readDesignString("grid"), Util.QUERY_BG_COLOR, Color.BLACK, Color.BLACK, gridCol);
 		
 		drawButtons();
-		drawEntries(deck);
+		drawEntries();
 	}
 	
-	private static void drawButtons() {
+	private void drawButtons() {
 		drawFancyButton("GO BACK TO MAIN MENU", textRow, textCol, 0, false);
 		drawFancyButton("ALL", textRow+3, textCol, 1, selectedCardType==0);
 		drawFancyButton("POKEMON", textRow+3, textCol+6, 2, selectedCardType==1);
@@ -78,8 +87,8 @@ public class Search {
 		drawGrid();
 	}
 	
-	private static void drawEntries(CardDeck deck) {
-		updateEntries(deck);
+	private void drawEntries() {
+		updateEntries();
 		
 		for (int i = 0; i < Math.min(16, entries.size()); i++) {
 			Card card = entries.get(i);
@@ -92,7 +101,7 @@ public class Search {
 		}
 	}
 	
-	private static void drawFancyButton(String text, int row, int col, int id, boolean selected) {
+	private void drawFancyButton(String text, int row, int col, int id, boolean selected) {
 		if (id == globalSelection)
 			text = ">"+text+"<";
 		else
@@ -101,7 +110,7 @@ public class Search {
 		drawButton(text, row, col, id, selected);
 	}
 	
-	private static void drawButton(String text, int row, int col, int id, boolean selected) {
+	private void drawButton(String text, int row, int col, int id, boolean selected) {
 		if (selected) {
 			if (id == globalSelection)
 				Display.printSimpleString(text, row, col, Util.QUERY_FG_COLOR, BUTTON_SELECTED_COLOR.darker(), false);
@@ -115,7 +124,7 @@ public class Search {
 		}
 	}
 	
-	private static void drawSortButton(int row, int col, int id, int selectedStatus) {
+	private void drawSortButton(int row, int col, int id, int selectedStatus) {
 		String c = selectedStatus==0 ? "-" : (selectedStatus==1 ? "▼" : "▲");
 		
 		if (selectedStatus > 0) {
@@ -133,7 +142,7 @@ public class Search {
 	
 	
 	
-	private static void drawGrid() {
+	private void drawGrid() {
 		drawSortButton(gridRow+1, gridCol+1, 5, 0);
 		drawSortButton(gridRow+1, gridCol+3, 6, 0);
 		drawButton("NAME", gridRow+1, gridCol+5, 7, false);
@@ -147,7 +156,7 @@ public class Search {
 	
 	
 	
-	private static void updateFilters() {
+	private void updateFilters() {
 		switch (Math.abs(selectedSort)) {
 			default:
 			case 1:
@@ -169,7 +178,7 @@ public class Search {
 		}
 	}
 	
-	private static void updateEntries(CardDeck deck) {
+	private void updateEntries() {
 		updateFilters();
 		
 		if (selectedCardType == 1) {

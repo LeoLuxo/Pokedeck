@@ -22,8 +22,9 @@ public class Pokedeck {
       // Liz SCHREINER
       
       Display.initDisplay();
-
-      MainMenu.askDeck();
+      
+      MainMenu menu = new MainMenu();
+      menu.askDeck();
 
     } finally {
       Display.exitDisplay();

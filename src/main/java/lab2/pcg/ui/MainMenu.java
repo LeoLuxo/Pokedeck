@@ -12,14 +12,22 @@ import java.awt.*;
 
 public class MainMenu {
 	
-	private static CardDeck loadedDeck;
-	
 	private static final int logoRow = 10;
 	private static final int logoCol = 10;
 	private static final int menuRow = 17;
 	private static final int menuCol = 10;
 	
-	public static void askDeck() {
+	
+	
+	private CardDeck deck;
+	
+	
+	
+	public MainMenu() {}
+	
+	
+	
+	public void askDeck() {
 		while (true) {
 			drawMenu();
 			// Ask user for name
@@ -35,13 +43,13 @@ public class MainMenu {
 				}
 			}
 			
-			loadedDeck = PokedeckManager.loadDeck(name);
+			deck = PokedeckManager.loadDeck(name);
 			
 			mainMenuSelector();
 		}
 	}
 	
-	public static boolean askNewDeck(String name) {
+	public boolean askNewDeck(String name) {
 		drawMenu();
 		Display.printSimpleString("Deck doesn't exist. Would you like to create a new deck \"" + name + "\"?", menuRow, menuCol);
 		int answer = Util.requestMultiChoiceInput(new String[]{"YES", "NO"}, menuRow+2, menuCol, true);
@@ -54,10 +62,10 @@ public class MainMenu {
 		}
 	}
 
-	public static void mainMenuSelector() {
+	public void mainMenuSelector() {
 		while (true) {
 			drawMenu();
-			Display.printSimpleString("Currently loaded deck: " + loadedDeck.name, menuRow, menuCol);
+			Display.printSimpleString("Currently loaded deck: " + deck.name, menuRow, menuCol);
 			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol);
 			
 			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol, true);
@@ -72,16 +80,17 @@ public class MainMenu {
 		}
 	}
 	
-	public static void addCardMenu() {
+	public void addCardMenu() {
 		Card card = CardCreator.designNewCard();
 		if (card != null) {
-			loadedDeck.addCard(card);
-			PokedeckManager.saveDeck(loadedDeck);
+			deck.addCard(card);
+			PokedeckManager.saveDeck(deck);
 		}
 	}
 	
-	public static void searchMenu() {
-		Search.mainSearchMenu(loadedDeck);
+	public void searchMenu() {
+		Search search = new Search(deck);
+		search.mainSearchMenu();
 	}
 	
 	
