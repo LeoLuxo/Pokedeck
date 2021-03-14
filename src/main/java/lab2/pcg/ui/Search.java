@@ -36,6 +36,7 @@ public class Search {
 	private final CardDeck deck;
 	
 	private int globalSelection = 0;
+	private int globalSelectionOld = 0;
 	private int globalSelectionMax = 0;
 	private int selectedCardType = 0;
 	private int selectedSort = 0;
@@ -84,7 +85,7 @@ public class Search {
 		}
 		
 		drawButtons();
-		drawEntries();
+		drawEntries(true);
 	}
 	
 	private void drawButtons() {
@@ -108,17 +109,20 @@ public class Search {
 		drawButton("EXP", gridRow+1, gridCol+95, 12, false);
 	}
 	
-	private void drawEntries() {
+	private void drawEntries(boolean fullRedraw) {
 		updateEntries();
 		
 		for (int i = 0; i < Math.min(16, entries.size()); i++) {
+			int id = MENU_BUTTONS+1+i;
+			if (!fullRedraw && id != globalSelection && id != globalSelectionOld) continue;
+			
 			Card card = entries.get(i);
 			Color c = card.getSearchBackground();
-			drawButton(Util.delimitString(card.getClass().getSimpleName(), 1), gridRow+3+i, gridCol+1, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString(card.name, 25), gridRow+3+i, gridCol+3, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString(card.description.replaceAll("\n+", " "), 57), gridRow+3+i, gridCol+29, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString("  " + String.valueOf(card.cardNumber), 5), gridRow+3+i, gridCol+87, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString("  " + card.expansionSymbol,5), gridRow+3+i, gridCol+93, MENU_BUTTONS+1+i, false, c);
+			drawButton(Util.delimitString(card.getClass().getSimpleName(), 1), gridRow+3+i, gridCol+1, id, false, c);
+			drawButton(Util.delimitString(card.name, 25), gridRow+3+i, gridCol+3, id, false, c);
+			drawButton(Util.delimitString(card.description.replaceAll("\n+", " "), 57), gridRow+3+i, gridCol+29, id, false, c);
+			drawButton(Util.delimitString("  " + card.cardNumber, 5), gridRow+3+i, gridCol+87, id, false, c);
+			drawButton(Util.delimitString("  " + card.expansionSymbol,5), gridRow+3+i, gridCol+93, id, false, c);
 		}
 		
 		Display.printSimpleString(Math.min(16, entries.size()) + " / " + deck.getSize() + " cards displayed", gridRow+20, gridCol, Color.WHITE, Color.BLACK, true);
@@ -248,11 +252,12 @@ public class Search {
 					
 				}
 			} else {
+				globalSelectionOld = globalSelection;
 				globalSelection = Math.max(Math.min(globalSelection + input, globalSelectionMax), 0);
 			}
 			
 			drawButtons();
-			drawEntries();
+			drawEntries(false);
 		}
 	}
 	
@@ -262,10 +267,6 @@ public class Search {
 			selectedSort = -selectedSort;
 		else
 			selectedSort = i;
-	}
-	
-	private void querySearchBase() {
-	
 	}
 	
 	private void querySearchName() {
