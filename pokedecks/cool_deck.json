@@ -1,0 +1,196 @@
+{
+  "cards": [
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 60,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "COLORLESS",
+        "name": "Eevee",
+        "description": "It has the ability to alter the\ncomposition of its body to suit\nits surrounding environment.",
+        "cardNumber": 52,
+        "expansionSymbol": "SF"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 190,
+        "stage": "V",
+        "evolvesFrom": "",
+        "type": "LIGHTNING",
+        "name": "Pikachu",
+        "description": "V rule: When your Pokemon V is\nknocked out, your opponent takes 2\nPrize cards.",
+        "cardNumber": 61,
+        "expansionSymbol": "SSP"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 420,
+        "stage": "LEGEND",
+        "evolvesFrom": "",
+        "type": "LIGHTNING",
+        "name": "Surprised Pikachu",
+        "description": "Has a surprised face.\nGood meme 10/10 IGN",
+        "cardNumber": 420,
+        "expansionSymbol": "KEK"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 30,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "WATER",
+        "name": "Magikarp",
+        "description": "It is virtually worthless in terms\nof both power and speed.\nIt is the most weak and pathetic\nPokemon in the world.",
+        "cardNumber": 39,
+        "expansionSymbol": "RC"
+      }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "SUPPORTER",
+        "name": "Fisherman",
+        "description": "Put 4 basic Energy cards from your\ndiscard pile into your hand.",
+        "cardNumber": 83,
+        "expansionSymbol": "CS"
+      }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "STADIUM",
+        "name": "Mt. Coronet",
+        "description": "Once during each players turn,\nthat player may put 2 Energy cards\nfrom their discard pile into their\nhand.\n\nThis card stays in play when you\nplay it.",
+        "cardNumber": 89,
+        "expansionSymbol": "UP"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "COLORLESS",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "GRASS",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "FIRE",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "WATER",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "LIGHTNING",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "PSYCHIC",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "FIGHTING",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "DARKNESS",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "METAL",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "DRAGON",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "RAINBOW",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "SPECIAL",
+        "name": "Twin Energy",
+        "description": "",
+        "cardNumber": 174,
+        "expansionSymbol": "RCL"
+      }
+    }
+  ]
+}

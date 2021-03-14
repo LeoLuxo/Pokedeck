@@ -150,26 +150,29 @@ public class Display {
 		System.out.flush();
 	}
 	
-	public static void printLeftAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection) {
+	public static void printLeftAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection, boolean checkEmpty) {
 		checkSelection(fgColor, bgColor, selection);
 		cursorPosition(row, col);
 		
-		System.out.print(checkEmtpy(string));
+		System.out.print(checkEmpty ? checkEmtpy(string) : string);
 		System.out.flush();
 		
 		resetStyle();
 	}
 	
-	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection) {
-		string = checkEmtpy(string);
-		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor, selection);
+	public static void printRightAlignedString(String string, int row, int col, Color fgColor, Color bgColor, int selection, boolean checkEmpty) {
+		if (checkEmpty)
+			string = checkEmtpy(string);
+		printLeftAlignedString(string, row, col - string.length() + 1, fgColor, bgColor, selection, checkEmpty);
 	}
 	
-	public static void printWrappedString(String string, int row, int col, Color fgColor, Color bgColor, int maxRow, int maxCol, int selection) {
+	public static void printWrappedString(String string, int row, int col, Color fgColor, Color bgColor, int maxRow, int maxCol, int selection, boolean checkEmpty) {
 		checkSelection(fgColor, bgColor, selection);
 		cursorPosition(row, col);
 		
-		char[] chars = checkEmtpy(string).replaceAll("\r\n", "\n").toCharArray();
+		if (checkEmpty)
+			string = checkEmtpy(string);
+		char[] chars = string.replaceAll("\r\n", "\n").toCharArray();
 		int rowOffset = 0;
 		
 		for (int i = 0; i < chars.length; i++) {

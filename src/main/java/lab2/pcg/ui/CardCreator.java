@@ -33,8 +33,8 @@ public class CardCreator {
 			card = new EnergyCard();
 		}
 		
-		boolean addAccepted = updateCard(card);
-		return addAccepted ? card : null;
+		boolean saveConfirmed = updateCard(card);
+		return saveConfirmed ? card : null;
 	}
 	
 	// card is modfied in place
@@ -43,16 +43,16 @@ public class CardCreator {
 		
 		while (true) {
 			drawTitle();
-			card.displayCard(cardRow, cardCol, true, selection);
+			card.displayCard(cardRow, cardCol, true, selection, true);
 			drawSaveCancel(selection - card.getNumberOfFields());
 			
 			while (true) {
 				int input = Util.requestChoiceBase();
 				if (input == 0) {
 					if (selection == card.getNumberOfFields()) {
-						return false;
-					} else if (selection == card.getNumberOfFields() + 1) {
 						return true;
+					} else if (selection == card.getNumberOfFields() + 1) {
+						return false;
 					} else {
 						Display.setColor(Color.WHITE, Color.BLACK);
 						card.fillField(selection, creatorRow + 2, creatorCol);
@@ -62,7 +62,7 @@ public class CardCreator {
 					selection = Math.max(Math.min(selection + input, card.getNumberOfFields()+1), 0);
 				}
 				
-				card.displayCard(cardRow, cardCol, false, selection);
+				card.displayCard(cardRow, cardCol, false, selection, true);
 				drawSaveCancel(selection - card.getNumberOfFields());
 			}
 		}

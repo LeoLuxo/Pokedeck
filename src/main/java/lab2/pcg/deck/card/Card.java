@@ -22,7 +22,7 @@ public abstract class Card {
 	
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
-	public abstract void displayCard(int row, int col, boolean fullDraw, int selection);
+	public abstract void displayCard(int row, int col, boolean fullDraw, int selection, boolean checkEmpty);
 	
 	public abstract int getNumberOfFields();
 	public abstract void fillField(int selection, int row, int col);
@@ -33,19 +33,19 @@ public abstract class Card {
 	
 	protected void fillName(int row, int col) {
 		Display.printSimpleString("The card's name.", row, col);
-		name = Util.requestString(0, 27, row+1, col, true);
+		name = Util.requestSentenceString(0, 27, row+1, col, true);
 	}
 	
 	protected void fillDescription(int lines, int chars, int row, int col) {
 		Display.printSimpleString("The card's description.", row, col);
 		Display.printSimpleString("(max " + lines + " lines)", row+1, col);
 		for (int i = 0; i < lines; i++) {
-			Display.printSimpleString(String.format("%-"+(chars+2)+"s", ""), row+2+i, col, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR, false);
+			Display.printSimpleString(String.format("%-"+(chars+3)+"s", ""), row+2+i, col, Util.QUERY_FG_COLOR, Util.QUERY_BG_COLOR, false);
 		}
 		
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < lines; i++) {
-			builder.append(Util.requestString(0, chars, row + 2 + i, col, false)).append("\n");
+			builder.append(Util.requestSentenceString(0, chars, row + 2 + i, col, false)).append("\n");
 		}
 		
 		description = builder.toString().strip();

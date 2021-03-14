@@ -68,12 +68,12 @@ public class MainMenu {
 			Display.printSimpleString("Currently loaded deck: " + deck.name, menuRow, menuCol);
 			Display.printSimpleString("What would you like to do?", menuRow+1, menuCol);
 			
-			int result = Util.requestMultiChoiceInput(new String[]{"Add a card", "View/Search collection", "Switch deck"}, menuRow+3, menuCol, true);
+			int result = Util.requestMultiChoiceInput(new String[]{"View/Search collection", "Add a card", "Switch deck"}, menuRow+3, menuCol, true);
 			
 			if (result == 0) {
-				addCardMenu();
-			} else if (result == 1) {
 				searchMenu();
+			} else if (result == 1) {
+				addCardMenu();
 			} else {
 				return;
 			}

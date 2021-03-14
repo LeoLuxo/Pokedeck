@@ -1,6 +1,7 @@
 package lab2.pcg.ui;
 
 import lab2.pcg.Display;
+import lab2.pcg.PokedeckManager;
 import lab2.pcg.Util;
 import lab2.pcg.deck.CardDeck;
 import lab2.pcg.deck.card.Card;
@@ -28,7 +29,7 @@ public class Search {
 	private static final int actionRow = gridRow;
 	private static final int actionCol = gridCol + 102;
 	private static final int cardViewRow = 2;
-	private static final int cardViewCol = 50;
+	private static final int cardViewCol = 56;
 	
 	
 	
@@ -72,7 +73,7 @@ public class Search {
 		Display.eraseInDisplayFull();
 		
 		Display.setColor(Color.WHITE, Color.BLACK);
-		Display.printSimpleString("Select below which card type should be searched for.", textRow+2, textCol);
+		Display.printSimpleString("Select below which card type should be displayed.", textRow+2, textCol);
 		
 		Display.cursorPosition(gridRow, gridCol);
 		Display.printColorDesign(Util.readDesignString("grid"), Util.QUERY_BG_COLOR, Color.BLACK, Color.BLACK, gridCol);
@@ -115,10 +116,12 @@ public class Search {
 			Color c = card.getSearchBackground();
 			drawButton(Util.delimitString(card.getClass().getSimpleName(), 1), gridRow+3+i, gridCol+1, MENU_BUTTONS+1+i, false, c);
 			drawButton(Util.delimitString(card.name, 25), gridRow+3+i, gridCol+3, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString(card.description.replaceAll("\n+", ";"), 57), gridRow+3+i, gridCol+29, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString(String.valueOf(card.cardNumber), 5), gridRow+3+i, gridCol+87, MENU_BUTTONS+1+i, false, c);
-			drawButton(Util.delimitString(card.expansionSymbol,5), gridRow+3+i, gridCol+93, MENU_BUTTONS+1+i, false, c);
+			drawButton(Util.delimitString(card.description.replaceAll("\n+", " "), 57), gridRow+3+i, gridCol+29, MENU_BUTTONS+1+i, false, c);
+			drawButton(Util.delimitString("  " + String.valueOf(card.cardNumber), 5), gridRow+3+i, gridCol+87, MENU_BUTTONS+1+i, false, c);
+			drawButton(Util.delimitString("  " + card.expansionSymbol,5), gridRow+3+i, gridCol+93, MENU_BUTTONS+1+i, false, c);
 		}
+		
+		Display.printSimpleString(Math.min(16, entries.size()) + " / " + deck.getSize() + " cards displayed", gridRow+20, gridCol, Color.WHITE, Color.BLACK, true);
 	}
 	
 	private void updateFilters() {
@@ -327,7 +330,7 @@ public class Search {
 		int cardIndex = deck.findCard(card);
 		if (action == 0) {
 			Display.printSimpleString("(Press any key to return)", cardViewRow, cardViewCol, Color.WHITE, Color.BLACK, false);
-			card.displayCard(cardViewRow+1, cardViewCol, true, -1);
+			card.displayCard(cardViewRow+1, cardViewCol, true, -1, false);
 			Util.requestSingleChar();
 		} else if (action == 1) {
 			boolean save = CardCreator.updateCard(card);
@@ -337,5 +340,7 @@ public class Search {
 		} else if (action == 2) {
 			deck.removeCard(cardIndex);
 		}
+		
+		PokedeckManager.saveDeck(deck);
 	}
 }

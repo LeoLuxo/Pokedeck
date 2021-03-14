@@ -15,7 +15,7 @@ public class TrainerCard extends Card {
 	// No non-default constructor needed, as we always set the default values on creation and then cherry pick fill the ones we want
 	
 	@Override
-	public void displayCard(int row, int col, boolean fullDraw, int selection) {
+	public void displayCard(int row, int col, boolean fullDraw, int selection, boolean checkEmpty) {
 		Display.resetSelection();
 		
 		if (fullDraw) {
@@ -23,11 +23,11 @@ public class TrainerCard extends Card {
 			Display.printColorDesign(Util.readDesignString("trainer_card"), MAIN_COLOR, SECONDARY_COLOR, Color.WHITE, col);
 		}
 		
-		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR, selection);
-		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR, selection);
-		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34, selection);
-		Display.printRightAlignedString(cardNumber + "/", row+25, col+36-expansionSymbol.length(), Color.BLACK, MAIN_COLOR, selection);
-		Display.printRightAlignedString(expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR, selection);
+		Display.printRightAlignedString(type.displayName, row+1, col+35, Color.BLACK, MAIN_COLOR, selection, checkEmpty);
+		Display.printRightAlignedString(name, row+2, col+35, Color.BLACK, MAIN_COLOR, selection, checkEmpty);
+		Display.printWrappedString(description, row+13, col+2, Color.BLACK, MAIN_COLOR, 12, 34, selection, checkEmpty);
+		Display.printRightAlignedString(cardNumber + "/", row+25, col+36-expansionSymbol.length(), Color.BLACK, MAIN_COLOR, selection, checkEmpty);
+		Display.printRightAlignedString(expansionSymbol, row+25, col+36, Color.BLACK, MAIN_COLOR, selection, checkEmpty);
 	}
 	
 	@Override

@@ -55,6 +55,10 @@ public class Util {
 		return requestStringBase("0123456789", minLength, maxLength, row, col, erase);
 	}
 	
+	public static String requestSentenceString(int minLength, int maxLength, int row, int col, boolean erase) {
+		return requestStringBase(" .,:;+*()?!/'&_-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", minLength, maxLength, row, col, erase);
+	}
+	
 	
 	
 	public static int requestChoiceBase() {
