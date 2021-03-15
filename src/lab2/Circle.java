@@ -1,7 +1,7 @@
      package lab2;
      public class Circle {
 
-     public static void drawCircle(int radius){
+     public static void draw(int radius){
 
     float dist;
 
