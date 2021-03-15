@@ -1,0 +1,112 @@
+{
+  "cards": [
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 600,
+        "stage": "EX",
+        "evolvesFrom": "Pichu",
+        "type": "LIGHTNING",
+        "name": "Pikachu",
+        "description": "Cute",
+        "cardNumber": 420,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 420,
+        "stage": "LEGEND",
+        "evolvesFrom": "Meme",
+        "type": "LIGHTNING",
+        "name": "Surprised Pikachu",
+        "description": "Very good meme kthxbye",
+        "cardNumber": 999,
+        "expansionSymbol": "POO"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 30,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "WATER",
+        "name": "Magikarp",
+        "description": "Can use fly",
+        "cardNumber": 123,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 30,
+        "stage": "STAGE_1",
+        "evolvesFrom": "Water",
+        "type": "WATER",
+        "name": "Magicarp",
+        "description": "asd",
+        "cardNumber": 333,
+        "expansionSymbol": "wer"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 0,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "COLORLESS",
+        "name": "",
+        "description": "asdasd\nads",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "ROCKET_SECRET_MACHINE",
+        "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "cardNumber": 123,
+        "expansionSymbol": "aaa"
+      }
+    },
+    {
+      "type": "EnergyCard",
+      "card": {
+        "type": "GRASS",
+        "name": "asddddddddddddddddddddddddd",
+        "description": "asdasdasdasdasdasdadsadadadadaadaa\nadad\nadada\nadaad\nadaadadadaadadadadadaaadadaadadada",
+        "cardNumber": 456,
+        "expansionSymbol": "ASD"
+      }
+    },
+    {
+      "type": "TrainerCard",
+      "card": {
+        "type": "ITEM",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    },
+    {
+      "type": "PokemonCard",
+      "card": {
+        "hp": 0,
+        "stage": "BASIC",
+        "evolvesFrom": "",
+        "type": "COLORLESS",
+        "name": "",
+        "description": "",
+        "cardNumber": 0,
+        "expansionSymbol": "BS"
+      }
+    }
+  ]
+}

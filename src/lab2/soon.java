@@ -103,10 +103,13 @@ import java.util.Scanner;
               Int width = input.scanner.nextInt();
               System.out.println("Please input the height of the rectangle");
               Int height = input.scanner.nextInt();
+              Rectangle.draw(int width, int height);
 
           }
           else if (shape.equalsIgnoreCase(circle)){
-            Circle.draw()
+            System.out.println("Please input the radius of the circle.");
+            Int radius = input.scanner.nextInt();
+            Circle.drawCircle(radius);
           }
           else if (shape.equalsIgnoreCase(triangle)){
             Triangle.draw()
