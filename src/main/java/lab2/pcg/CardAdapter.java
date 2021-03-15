@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 
 
 public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card> {
-	
+
 	@Override
 	public JsonElement serialize(Card card, Type type, JsonSerializationContext context) {
 		JsonObject obj = new JsonObject();
@@ -16,14 +16,14 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 		obj.add("card", new Gson().toJsonTree(card));
 		return obj;
 	}
-	
+
 	@Override
 	public Card deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
 		Card card;
 		JsonObject json = jsonElement.getAsJsonObject();
 		String cardTypeName = json.get("type").getAsString();
 		Class<? extends Card> cardType;
-		
+
 		// Could probably be done less redundandly using reflection, but I didn't want to overcomplicate stuff even more
 		if (cardTypeName.equals("PokemonCard")) {
 			cardType = PokemonCard.class;
@@ -34,10 +34,10 @@ public class CardAdapter implements JsonSerializer<Card>, JsonDeserializer<Card>
 		} else {
 			throw new JsonParseException("Card type \"" + cardTypeName + "\" not defined");
 		}
-		
+
 		// Weird trick / workaround to be able to call the default deserializer, instead of using context which would lead to infinite recursion
 		card = new Gson().fromJson(json.get("card"), cardType);
 		return card;
 	}
-	
+
 }
