@@ -8,6 +8,9 @@ import java.util.Scanner;
        public static void main(String[] args) {
         //Exercise 1.8
         ComputeArray array = new ComputeArray();
+        ComputeArray.arr = addX(idx, arr, x);
+        ComputeArray.maximum(data);
+        ComputeArray.minimum(data);
         //Exercise 1.2
         //Read 2 integers and print them.
         Scanner input = new Scanner(System.in);
